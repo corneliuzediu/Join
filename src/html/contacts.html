@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/style_media.css">
+    <link rel="stylesheet" href="../css/contacts.css">
+    <link rel="stylesheet" href="../css/log_in.css">
+    <link rel="stylesheet" href="../css/fonts.css">
+    <link rel="shortcut icon" href="../img/logo_blue.png" type="image/x-icon">
+    <!-- BOOTSTRAP INTEGRATION START-->
+    <link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <script src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- BOOTSTRAP INTEGRATION END -->
+    <script src="../js/mini_backend.js"></script>
+    <script src="../js/script.js"></script>
+    <script src="../js/contacts.js"></script>
+    <script src="../js/render_contacts.js"></script>
+    <script src="../js/sidebar.js"></script>
+    <!-- <script src="../js/board.js"></script> -->
+    <script src="../js/logIn_register.js"></script>
+    <title>Join - Contacts</title>
+</head>
+
+<body onload="loadAllContacts()">
+
+    <div class="container-fluid d-flex flex-column">
+        <!-- HEADER START -->
+        <div w3-include-html="../templates/header.html"></div>
+        <!-- SIDE BAR START -->
+        <div w3-include-html="../templates/sidebar.html"></div>
+        <!-- MODAL ADD NEW USER START-->
+        <!-- MODAL BUTTON  -->
+        <div class="flex-right-btn">
+            <button class="add-contact-button" onclick="openAddContactDialog()">
+                <span>New contact</span><img src="../img/addcontact.png">
+            </button>
+        </div>
+        <button type="button" id="delete-contact-button" class="delete-contact-button d-none"
+            onclick="deleteUserContacts()">
+            <span>Delete all your contacts</span>
+        </button>
+        <div id="delete-contact-button-alert" class="delete-contact-button-alert d-none">
+
+            <span><b>Sure to delete all contacts?</b></span>
+            <div class="delete-contact-button-bottom">
+                <div><a onclick="executeDeleteContacts()">YES</a></div>
+
+                <div><a onclick="abortDeleteContacts()">NO</a></div>
+            </div>
+
+            </button>
+        </div>
+
+        <!-- MODAL CONTENT NEW CONTACT-->
+        <div class="overlay d-none" onclick="closeAddContactDialog()" id="overlay">
+            <div class="add-contact-modal" onclick="event.stopPropagation()" id="add-contact-modal">
+                <div class="contact-dialog-top">
+                    <img class="close-icon" src="../img/close_icon.png" onclick="closeAddContactDialog()">
+                    <img class="join-logo-contacts" src="../img/join-logo.png">
+                    <h2 class="contact-title" id="exampleModalLabel">Add contact</h2>
+
+                    <h4 id="info-text" class="info-text">Tasks are better with a team!</h4>
+
+                </div>
+                <div class="contact-dialog-bottom">
+                    <div class="user-avatar"><img src="../img/user-avatar.png" alt=""></div>
+                    <div class="form">
+                        <form class="add-contact_form" onsubmit="addNewUserContact(); return false;">
+                            <div class="add-contact-input-field">
+                                <input id="new-contact-name" class="contact-form-control contacts_input " type="text"
+                                    placeholder="Name" required>
+                                <img src="../img/input_name.png" alt="">
+                            </div>
+                            <div class="add-contact-input-field">
+                                <input id="new-contact-email" class="contact-form-control contacts_input " type="email"
+                                    placeholder="Email" required>
+                                <img src="../img/input_mail.png" alt="">
+                            </div>
+                            <div class="add-contact-input-field">
+                                <input id="new-contact-phone" class="contact-form-control contacts_input " type="number"
+                                    pattern="" placeholder="Phone" required>
+                                <img src="../img/phone_icon.png" alt="">
+                            </div>
+                            <div class="create-btn-flexdiv">
+                                <button class="create-contact-button" type="submit" required>
+                                    <span>Create contact</span><img src="../img/addcontact.png">
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- MODAL EDIT CONTACT START-->
+        <div class="overlay d-none" onclick="closeEditContactDialog()" id="overlay2">
+            <div class="edit-contact-modal" onclick="event.stopPropagation()" id="edit-contact-modal">
+            </div>
+        </div>
+        <!-- MAIN START -->
+        <main class="main">
+            <div class="contacts-container">
+                <div class="contact-list" id="contact-list">No contacts so far!</div>
+                <div class="contact-detail" id="contact-detail"></div>
+            </div>
+        </main>
+        <!-- MAIN END  -->
+    </div>
+    </div>
+
+</body>
+
+</html>

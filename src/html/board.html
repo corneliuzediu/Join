@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/style_media.css">
+    <link rel="stylesheet" href="../css/board.css">
+    <link rel="stylesheet" href="../css/add_task.css">
+    <link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="fonts" href="../src/fonts/OpenSans-VariableFont_wdth,wght.ttf">
+    <link rel="fonts" href="../src/fonts/OpenSans-Italic-VariableFont_wdth,wght.ttf">
+    <link rel="shortcut icon" href="../img/logo_blue.png" type="image/x-icon">
+
+    <script src="../js/mini_backend.js"></script>
+    <script src="../js/template.js"></script>
+    <script src="../js/script.js"></script>
+    <script defer src="../js/sidebar.js"></script>
+    <script src="../models/create-task.class.js"></script>
+    <script src="../models/create-subtask.class.js"></script>
+    <script src="../js/board.js"></script>
+    <script src="../js/add_task.js"></script>
+    <script src="../js/contacts.js"></script>
+    <script src="../js/render_contacts.js"></script>
+    <script src="../js/logIn_register.js"></script>
+    <script src="../js/html_manipulation.js"></script>
+    <script src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    <title>Join - Board</title>
+</head>
+
+<body onload="initBoard()">
+    <div class="container-fluid mh-100 d-flex flex-column">
+
+        <!-- HEADER START -->
+        <div w3-include-html="../templates/header.html"></div>
+        <!-- HEADER END -->
+
+        <!-- SIDE BAR START -->
+        <div w3-include-html="../templates/sidebar.html"></div>
+        <!-- SIDEBAR END  -->
+
+        <!-- MODAL ADD TASK -->
+        <div class="add-task-overlay d-none" onclick="closeAddTaskDialog('add-task-modal', 'add-task-overlay')"
+            id="add-task-overlay">
+            <div class="task-added" id="task-added">
+                <img src="../img/task-added.png" alt="">
+            </div>
+            <div class="add-task-modal" onclick="event.stopPropagation()" id="add-task-modal">
+                <div class="add-task-header-top">
+                    <img class="close-icon" src="../img/add-task-close-icon.png"
+                        onclick="closeAddTaskDialog('add-task-modal', 'add-task-overlay')">
+                    <div class="add-task-header-bottom">
+                        <h2 class="add-task-title" id="exampleModalLabel">Add Task</h2>
+                    </div>
+                    <form class="add-task-form" onsubmit="createTask(false); return false;">
+                        <button value="submit" type="submit" class="btn-add-task btn-create-task">Create task
+                            <img src="../img/check-icon.png" alt="add-icon">
+                        </button>
+                        <button value="submit" type="submit" class="btn-add-task btn-create-task-resp">Create
+                            <img src="../img/check-icon.png" alt="add-icon">
+                        </button>
+                        <div class="form-width input-title margin-btn-25">
+                            <input class="add-title input-title-font" type="text" placeholder="Enter a title" id="title"
+                                required>
+                        </div>
+                        <div class="uniform-sizing text-19pt dropdown" role="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseContacts" aria-expanded="false" aria-controls="collapseContacts"
+                            id="contact-dropdown">
+                            <span>Select contacts to assign</span>
+                            <img src="../img/select-arrow.png" alt="">
+                        </div>
+                        <div class="subtasks-input-area d-none" id="contact-input-area">
+                            <input class="" type="email" placeholder="Contact email" id="contact-input">
+                            <div class="subtask-icons">
+                                <img onclick="closeContactInput('contact-input-area', 'contact-dropdown', 'contact-input')"
+                                    class="cursor-pointer" src="../img/cancel-subtask.png" alt="">
+                                <img src="../img/subtask-line.png" alt="">
+                                <img onclick="addContact()" class="cursor-pointer" src="../img/check-subtask.png"
+                                    alt="">
+                            </div>
+                        </div>
+                        <div class="margin-btn-25 assign-contact-container" id="contact-container">
+                            <div class="dropdown-contacts-container collapse" id="collapseContacts" required>
+                                <div class="dropdown-contact"
+                                    onclick="openContactInput('contact-dropdown', 'contact-input-area', 'contact-input')"
+                                    role="button" data-bs-toggle="collapse" data-bs-target="#collapseContacts"
+                                    aria-expanded="false" aria-controls="collapseContacts" id="contact-dropdown">
+                                    <label for="">Invite new contact</label>
+                                    <img src="../img/new-contact-icon.png" alt="">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="date-area flex-column margin-btn-45">
+                            <span class="category-header">Due date</span>
+                            <input id="date" class="uniform-sizing" type="date" required>
+                        </div>
+                        <div class="category-area flex-column">
+                            <span class="category-header">Category</span>
+                            <div class="uniform-sizing text-19pt dropdown" role="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseCategory" aria-expanded="false"
+                                aria-controls="collapseCategory" id="category-dropdown">
+                                <span>Select task category</span>
+                                <img src="../img/select-arrow.png" alt="">
+                            </div>
+                        </div>
+                        <div class="category-container d-none" id="category-input-area">
+                            <div class="subtasks-input-area">
+                                <input class="" type="text" placeholder="New category name" id="category-input">
+                                <div class="subtask-icons">
+                                    <img onclick="closeCategoryInput()" class="cursor-pointer"
+                                        src="../img/cancel-subtask.png" alt="">
+                                    <img src="../img/subtask-line.png" alt="">
+                                    <img onclick="addNewCategory()" class="cursor-pointer"
+                                        src="../img/check-subtask.png" alt="">
+                                </div>
+                            </div>
+                            <div class="category-color-container radio-button">
+                                <div id="shadowLightblue" class="category-color lightblue">
+                                    <input value="lightblue" type="radio" id="lightblue" name="color">
+                                    <label for="lightblue"></label>
+                                </div>
+                                <div id="shadowRed" class="category-color red">
+                                    <input value="red" type="radio" id="red" name="color">
+                                    <label for="red"></label>
+                                </div>
+                                <div id="shadowGreen" class="category-color green">
+                                    <input value="green" type="radio" id="green" name="color">
+                                    <label for="green"></label>
+                                </div>
+                                <div id="shadowOrange" class="category-color orange">
+                                    <input value="orange" type="radio" id="orange" name="color">
+                                    <label for="orange"></label>
+                                </div>
+                                <div id="shadowViolet" class="category-color pink">
+                                    <input value="pink" type="radio" id="pink" name="color">
+                                    <label for="pink"></label>
+                                </div>
+                                <div id="shadowBlue" class="category-color blue">
+                                    <input value="blue" type="radio" id="blue" name="color">
+                                    <label for="blue"></label>
+                                </div>
+                                <div id="shadowTurquoise" class="category-color turquoise">
+                                    <input value="turquoise" type="radio" id="turquoise" name="color">
+                                    <label for="turquoise"></label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="assign-contact-container">
+                            <div class="dropdown-contacts-container collapse" id="collapseCategory">
+                                <div onclick="openCategoryInput()" class="dropdown-category" role="button"
+                                    data-bs-toggle="collapse" data-bs-target="#collapseCategory" aria-expanded="false"
+                                    aria-controls="collapseCategory">
+                                    <label for="new-category">New category</label>
+                                </div>
+                                <div onclick="selectCategory('Sales','pink')" class="dropdown-category">
+                                    <label for="sales">Sales</label>
+                                    <input type="radio" name="category" id="sales" value="Sales" role="button"
+                                        data-bs-toggle="collapse" data-bs-target="#collapseCategory"
+                                        aria-expanded="false" aria-controls="collapseCategory">
+                                    <div class="category-color-pink"></div>
+                                </div>
+                                <div onclick="selectCategory('Backoffice','turquoise')" class="dropdown-category">
+                                    <label for="backoffice">Backoffice</label>
+                                    <input type="radio" name="category" id="backoffice" value="Backoffice">
+                                    <div class="category-color-turqoise"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="button-area margin-btn-25">
+                            <button type="button" value="high" class="add-task-prio-high" id="high"
+                                onclick="checkButton('high')" onmouseover="hoverButton('high')"
+                                onmouseleave="leaveHoverButton('high')">
+                                <input type="radio" id="high-prio" name="prio" value="high">
+                                <label for="high-prio">
+                                    <span class="priority-button-text text-19pt">Urgent</span>
+                                    <img src="../img/prio_bnt_urgent.png" alt="">
+                                </label>
+                            </button>
+                            <button type="button" value="medium" class="add-task-prio-medium" id="medium"
+                                onclick="checkButton('medium')" onmouseover="hoverButton('medium')"
+                                onmouseleave="leaveHoverButton('medium')">
+                                <input type="radio" id="medium-prio" name="prio" value="medium">
+                                <label for="medium-prio">
+                                    <span class="priority-button-text text-19pt">Medium</span>
+                                    <img src="../img/prio_bnt_medium.png" alt="">
+                                </label>
+                            </button>
+                            <button type="button" value="low" class="add-task-prio-low" id="low"
+                                onclick="checkButton('low')" onmouseover="hoverButton('low')"
+                                onmouseleave="leaveHoverButton('low')">
+                                <input type="radio" id="low-prio" name="prio" value="low">
+                                <label for="low-prio">
+                                    <span class="priority-button-text text-19pt">Low</span>
+                                    <img src="../img/prio_bnt_low.png" alt="">
+                                </label>
+                            </button>
+                        </div>
+                        <div class="description-area description-area-overlay flex-column margin-btn-45">
+                            <span class="category-header">Description</span>
+                            <textarea class="description-text" name="" id="description-text" cols="30" rows="10"
+                                placeholder="Enter a Description"></textarea>
+                        </div>
+                        <div class="subtasks-area margin-btn-45">
+                            <span class="category-header">Subtasks</span>
+                            <div class="subtasks-input-area gray-fonts cursor-pointer" id="subtasks-area"
+                                onclick="openSubtaskInput()">
+                                <span>Add new subtask</span>
+                                <img src="../img/subtask-icon.png" alt="">
+                            </div>
+                            <div class="subtasks-input-area d-none" id="subtasks-input-area">
+                                <input class="" type="text" placeholder="Add new subtask" id="subtask-input">
+                                <div class="subtask-icons">
+                                    <img onclick="closeSubtaskInput()" class="cursor-pointer"
+                                        src="../img/cancel-subtask.png" alt="">
+                                    <img src="../img/subtask-line.png" alt="">
+                                    <img onclick="addSubtask()" class="cursor-pointer" src="../img/check-subtask.png"
+                                        alt="">
+                                </div>
+                            </div>
+                            <div class="input-check" id="subtask-container">
+
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- MODAL ADD TASK END-->
+
+        <!-- MODAL TASK -->
+        <div class="task-overlay d-none" onclick="closeAddTaskDialog('task-modal', 'task-overlay')" id="task-overlay">
+            <div class="task-modal" onclick="event.stopPropagation()" id="task-modal">
+            </div>
+        </div>
+        <!-- MODAL TASK END -->
+
+        <!-- BOARD START -->
+        <main class="board">
+            <div class="board-header-container">
+                <div class="main-header">
+                    <h3 class="responsive-headline">Kanban Project Managment Tool</h3>
+                    <div class="input-group input-group-lg search">
+                        <input type="text" id="search" placeholder="Find Task" class="form-control"
+                            aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg"
+                            onkeyup="findTask()">
+                        <div class="line"></div>
+                        <span class="input-group-text" id="inputGroup-sizing-lg">
+                            <img src="../img/search-icon.png" alt="search-icon">
+                        </span>
+                    </div>
+                    <button class="btn-add-task" onclick="openAddTaskDialog('add-task-overlay', 'add-task-modal')">
+                        Add <span>task</span>
+                        <img src="../img/add-icon.png" alt="add-icon">
+                    </button>
+                </div>
+            </div>
+
+            <div class="board-bottom-container">
+                <div class="board-column">
+                    <div class="board-points">
+                        <h3>To do</h3>
+                        <div class="add-icon" id="add-icon0"
+                            onclick="openAddTaskDialog('add-task-overlay', 'add-task-modal'); markAddIconAsActive(0)">
+                        </div>
+                    </div>
+                    <div class="board-tasks-container" id="to-do" ondrop="moveTo('to-do')" ondragover="allowDrop(event)"
+                        ondragstart="removeHighlight('template0')">
+                    </div>
+                </div>
+
+                <div class="board-column">
+                    <div class="board-points">
+                        <h3>In progress</h3>
+                        <div class="add-icon" id="add-icon1"
+                            onclick="openAddTaskDialog('add-task-overlay', 'add-task-modal'); markAddIconAsActive(1)">
+                        </div>
+                    </div>
+                    <div class="board-tasks-container" id="in-progress" ondrop="moveTo('in-progress')"
+                        ondragstart="removeHighlight('template1')" ondragover="allowDrop(event)">
+                    </div>
+                </div>
+
+                <div class="board-column">
+                    <div class="board-points">
+                        <h3>Await feedback</h3>
+                        <div class="add-icon" id="add-icon2"
+                            onclick="openAddTaskDialog('add-task-overlay', 'add-task-modal'); markAddIconAsActive(2)">
+                        </div>
+                    </div>
+                    <div class="board-tasks-container" id="await-feedback" ondrop="moveTo('await-feedback')"
+                        ondragstart="removeHighlight('template2')" ondragover="allowDrop(event)">
+                    </div>
+                </div>
+
+                <div class="board-column">
+                    <div class="board-points">
+                        <h3>Done</h3>
+                        <div class="add-icon" id="add-icon3"
+                            onclick="openAddTaskDialog('add-task-overlay', 'add-task-modal'); markAddIconAsActive(3)">
+                        </div>
+                    </div>
+                    <div class="board-tasks-container" id="done" ondrop="moveTo('done')"
+                        ondragstart="removeHighlight('template3')" ondragover="allowDrop(event)">
+                    </div>
+                </div>
+            </div>
+
+        </main>
+        <!-- BOARD END  -->
+
+    </div>
+
+</body>
+
+</html>

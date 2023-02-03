@@ -1,0 +1,32 @@
+[
+    {
+        "firstname": "Bernd",
+        "lastname": "Brot",
+        "email": "bernbrot@tivi.de",
+        "telephone": "0361 - 22 33 44 33"
+    },
+    {
+        "firstname": "Markus",
+        "lastname": "Müller",
+        "email": "mm@tolledomain.de",
+        "telephone": "0000 - 00 00 00 00"
+    },
+    {
+        "firstname": "Sabine",
+        "lastname": "Sonderbar",
+        "email": "saso@tolledomain.de",
+        "telephone": "0000 - 00 00 00 00"
+    },
+    {
+        "firstname": "Trage",
+        "lastname": "Torsten",
+        "email": "trator@tolledomain.de",
+        "telephone": "0000 - 00 00 00 00"
+    },
+    {
+        "firstname": "Hol",
+        "lastname": "Halga",
+        "email": "hoha@tolledomain.de",
+        "telephone": "0000 - 00 00 00 00"
+    }
+]

@@ -1,0 +1,138 @@
+.legalNotice__wrapper {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin-left: 18rem;
+    margin-top: 12rem;
+    min-height: calc(100vh - 15rem);
+    width: calc(100% - 25rem);
+    text-align: justify;
+}
+
+
+.legalNotice__back--button {
+    position: absolute;
+    top: 0;
+    right: -50px;
+}
+
+.legalNotice__wrapper h1 {
+    color: #4589FF;
+    font-size: 3rem;
+    font-weight: 700;
+}
+
+
+.legalNotice__wrapper h2 {
+    color: #005DFF;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+
+.legalNotice__wrapper h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    padding-top: 0.5rem;
+}
+
+
+.legalNotice__wrapper h4 {
+    font-size: 1.5rem;
+    padding-top: 0.5rem;
+}
+
+.legalNotice__wrapper p {
+    font-size: 1rem;
+}
+
+
+.legalNotice__wrapper a {
+    word-break: break-word;
+}
+
+.legalNotice__impressum--container ol {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    list-style: none;
+    counter-reset: stb;
+    padding-inline-start: 0%;
+}
+
+
+.legalNotice__impressum--container li {
+    display: flex;
+    counter-increment: stb;
+    padding-bottom: 1rem;
+}
+
+.legalNotice__impressum--container ol li::before {
+    content: counter(stb) ".";
+    color: #005DFF;
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+
+/* Media */
+@Media(max-width:992px) {
+    .legalNotice__wrapper {
+        margin-top: 10rem;
+        margin-left: 16rem;
+        width: calc(100% - 20rem);
+    }
+
+
+    .legalNotice__back--button {
+        right: -30px;
+        top: -4%;
+        cursor: pointer;
+    }
+}
+
+
+@Media(max-width:768px) {
+    .legalNotice__wrapper {
+        margin: 10rem 2rem;
+        width: auto;
+    }
+
+
+    .legalNotice__wrapper h1 {
+        font-size: 2rem;
+    }
+
+
+    .legalNotice__wrapper h2 {
+        font-size: 1.5rem;
+        word-break: break-word;
+    }
+
+
+    .legalNotice__wrapper h3,
+    .legalNotice__wrapper h4 {
+        font-size: 1.2rem;
+        word-break: break-word;
+    }
+
+    .legalNotice__wrapper p,
+    .legalNotice__wrapper li {
+        font-size: 0.9rem;
+    }
+}
+
+
+@Media(max-width:576px) {
+    .legalNotice__back--button {
+        right: 0px;
+        top: -6%;
+    }
+
+
+    .legalNotice__wrapper h1 {
+        color: black;
+    }
+}

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/log_in.css">
+    <link rel="stylesheet" href="../css/signUp_forgot.css">
+    <link rel="stylesheet" href="../css/fonts.css">
+    <link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="shortcut icon" href="../img/logo_blue.png" type="image/x-icon">
+
+    <script src="../js/logIn_register.js"></script>
+    <script src="../js/html_manipulation.js"></script>
+    <script src="../js/script.js"></script>
+    <script src="../js/mini_backend.js"></script>
+    <title>Join - Sign up</title>
+
+</head>
+
+<body onload="loadUsersFromBackend()">
+    <div id="signUp__id--main" class="forgot__file--wrapper">
+        <div id="logo_container" class="logo__container logo__position">
+            <img src="../img/logo_white.png" alt="">
+        </div>
+        <div class="logIn__wrapper">
+            <div class="logIn__frame signUp__frame">
+                <a href="../../index.html">
+                    <img class="arrow_back" src="../img/arrow_back.png" alt="">
+                </a>
+                <div class="forgot__text--wrapper ">
+                    <h1 class="logIn__title signUp__title">Sign up</h1>
+                </div>
+                <form class="signUp__form--container" onsubmit="addNewUser(); return false;">
+                    <div class="logIn_input--container">
+                        <input id="newUser-name" class="form-control logIn__input" type="text" placeholder="Name"
+                            required>
+                        <img src="../img/input_name.png" alt="">
+                    </div>
+                    <div class="logIn_input--container">
+                        <input id="newUser-email" class="form-control logIn__input" type="email" placeholder="Email"
+                            required>
+                        <img src="../img/input_mail.png" alt="">
+                    </div>
+                    <div id="signUp__validation" class="logIn__validation d-none"></div>
+                    <div class="logIn_input--container">
+                        <input id="newUser-password" class="form-control logIn__input" type="password"
+                            placeholder="Password" required minlength="4">
+                        <img src="../img/input_password.png" alt="">
+                    </div>
+                    <div class="logIn__buttons">
+                        <button class="btn logIn__btn--user">Sign up</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div id="signUp__id--response" class="response__signIn--wrapper d-none">
+        <div class="response__signIn--container">
+            <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+                    <path
+                        d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+                </symbol>
+            </svg>
+            <div class="alert alert-success d-flex align-items-center " role="alert">
+                <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">
+                    <use xlink:href="#check-circle-fill" />
+                </svg>
+                <div>
+                    Your registration have been succesfully submited!
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

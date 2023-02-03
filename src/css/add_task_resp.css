@@ -1,0 +1,316 @@
+/* Responsive area */
+
+.responsive-header {
+    display: none;
+}
+
+#join_logo_blue {}
+
+@media (max-width: 1360px) {
+    .add-task-btn-area {
+        left: 430px;
+    }
+}
+
+@media (max-width: 1230px) {
+
+    header {
+        background-color: white;
+    }
+
+    header {
+        display: none;
+    }
+
+    .responsive-header {
+        display: flex;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 97px;
+        box-shadow: 0px 4px 4px rgb(0 0 0 / 10%);
+        align-items: center;
+        padding-left: 25px;
+        background-color: white !important;
+        background: white !important;
+        z-index: 100;
+    }
+}
+
+@media (max-width: 1200px) {
+    .d-none-resp {
+        display: none;
+    }
+
+    .add-task-right-button-right {
+        width: 113px;
+        height: 51px;
+        position: fixed;
+        top: 23px;
+        z-index: 100;
+        right: 5%;
+    }
+
+    .responsive_text {
+        display: block;
+        font-weight: 400;
+        font-size: 19px;
+        line-height: 120%;
+        color: #4589FF;
+    }
+}
+
+@media (max-width: 1024px) {
+    body {
+        overflow-x: hidden;
+    }
+
+    main {
+        overflow-y: scroll;
+    }
+
+    main::-webkit-scrollbar {
+        display: none;
+    }
+
+
+    .dropdown-contacts-container {
+        width: 363px;
+    }
+
+    .dropdown-contact {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 120%;
+    }
+
+    .add-title {
+        font-weight: 400;
+        font-size: 28px;
+        line-height: 120%;
+        width: 363px;
+    }
+
+    .add-title::placeholder {
+        font-weight: 400;
+        font-size: 28px;
+        line-height: 120%;
+    }
+
+    .uniform-sizing {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 120%;
+        /* width: 363px; */
+    }
+
+    .uniform-sizing::placeholder {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 120%;
+    }
+
+    .category-header {
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 120%;
+    }
+
+    .priority-button-text {
+        font-weight: 400 !important;
+        font-size: 16px !important;
+        line-height: 120% !important;
+    }
+
+    .button-area {
+        width: 422px;
+        height: 51px;
+    }
+
+
+    #high,
+    #low {
+        width: 33%;
+        /* height: 41px; */
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 120%;
+    }
+
+    #medium {
+        width: 33%;
+        /* height: 41px; */
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 120%;
+    }
+
+    .description-area textarea {
+        /* width: 363px; */
+        height: 93px;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 120%;
+    }
+
+    .description-area textarea::placeholder {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 120%;
+    }
+
+    .subtasks-input-area {
+        /* width: 363px; */
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 120%;
+    }
+
+    .subtasks-input-area::placeholder {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 120%;
+    }
+
+    /* .input-title,
+    .uniform-sizing,
+    #date,
+    .description-area textarea,
+    .subtasks-input-area {
+        padding: 11px 21px !important;
+    } */
+
+    .subtask {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 120%;
+    }
+
+    .margin-btn-25 {
+        margin-bottom: 21px;
+    }
+
+    .margin-btn-45 {
+        margin-bottom: 27px;
+    }
+
+    .form-width,
+    /* .add-task-left */
+     {
+        width: 363px;
+    }
+
+}
+
+@media (max-width: 768px) {
+    .add-task-left {
+        margin-left: 0;
+    }
+
+    .add-task-form {
+        padding-right: 0;
+    }
+
+    .add-task-form {
+        flex-direction: column;
+    }
+
+    body>div>main {
+        display: flex;
+        justify-content: center;
+    }
+
+    .add-task-main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media (max-width: 576px) {
+
+    /* .form-width,
+    .add-task-left,
+    .subtasks-input-area,
+    .add-title,
+    .description-area textarea,
+    .add-task-main,
+    .button-area,
+    .add-task-form {
+        width: 300px !important;
+    } */
+
+    .dropdown-contacts-container {
+        width: 100%;
+    }
+
+    /* .button-area>button {
+        width: 90px !important;
+    } */
+
+    .add-task-main {
+    }
+
+    .form-width {
+        margin-top: 0;
+    }
+}
+
+@media (max-width: 375px) {
+    .responsive-header {
+        height: 72.75px;
+    }
+
+    .add-task-right-button-right {
+        top: 10px;
+    }
+
+    .margin-btn-45 {
+        margin-bottom: 20.25px;
+    }
+
+    .margin-btn-25 {
+        margin-bottom: 15.75px;
+    }
+}
+
+@media (max-width: 320px) {
+
+    /* .form-width, */
+    .add-task-left,
+    .add-task-right,
+    .subtasks-input-area,
+    .add-title,
+    .description-area textarea,
+    .add-task-main,
+    /* .button-area, */
+    .add-task-form {
+        width: 98% !important;
+    }
+
+    .responsive_text {
+        width: 75%;
+    }
+
+    .button-area>button {
+        width: 33% !important;
+    }
+
+    main {
+        font-size: 1rem !important;
+        padding-left: 0 !important;
+        padding-right: !important;
+    }
+
+    *::placeholder {
+        font-size: 1.2rem !important;
+    }
+
+
+    #high>label>img,
+    #medium>label>img,
+    #low>label>img {
+        width: 10px;
+    }
+}

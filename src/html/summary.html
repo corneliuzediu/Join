@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-88">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/summary_responsive.css">
+    <link rel="stylesheet" href="../css/style_media.css">
+    <link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/fonts.css">
+    <script src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+
+    <link rel="shortcut icon" href="../img/logo_blue.png" type="image/x-icon">
+
+    <script src="../js/mini_backend.js"></script>
+    <script src="../js/logIn_register.js"></script>
+    <script src="../js/script.js"></script>
+    <script src="../js/summary.js"></script>
+    <script src="../js/contacts.js"></script>
+    <script src="../models/create-task.class.js"></script>
+    <script src="../js/sidebar.js"></script>
+    <script src="../js/render_contacts.js"></script>
+    <script src="../js/sidebar.js"></script>
+    <title>Join - Summary</title>
+</head>
+
+<body onload="initSummary()">
+    <div class="container-fluid mh-100 d-flex flex-column">
+
+        <!-- HEADER START -->
+        <div w3-include-html="../templates/header.html"></div>
+        <!-- HEADER END -->
+
+        <!-- SIDE BAR START -->
+        <div w3-include-html="../templates/sidebar.html"></div>
+        <!-- SIDEBAR END  -->
+
+        <!-- MAIN START  -->
+        <main class="main">
+            <div class="summary-container">
+                <div class="d-none-not-important headline-resp"><span>Kanban Project Management Tool</span></div>
+
+                <div id="greeting-content">
+
+                    <div class="greeting" id="greeting">
+                        <div class="text-black">
+                            <h2 id="day-time">Good Morning</h2>
+                        </div>
+                        <div class="text-danger">
+                            <h1 id="active-user-name">FirstName LastName</h1>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="top-summary-container gap-3">
+                    <div class="alert-card copy-white" onclick="toBoard()">
+                        <div>
+                            <div class="top-box p-2">
+                                <div><img src="../img/time_clock.png" alt=""></div>
+                                <div id="tasks-urgent" class="copy-white">0</div>
+                            </div>
+                            <div class="copy-white font-light bottom-box">Tasks urgent
+                            </div>
+                        </div>
+                        <div class="vertical-line"></div>
+
+                        <div>
+                            <div class="top-box font-medium" id="date-of-today">Weekday 00, 0000</div>
+                            <span class="copy-white font-light bottom-box">Upcoming Deadline
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="alert-card-paleblue d-flex flex-column justify-content-center" onclick="toBoard()">
+                        <div class=" copy-black d-flex justify-content-between align-items-center p-2 gap-3">
+                            <div><img src="../img/dash_board.png"></div>
+                            <div id="tasks-to-do">0</div>
+                        </div>
+                        <div><span class="copy-blue font-light bottom-box">Tasks To-do</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container justify-content-between d-flex gap-3">
+                    <div class="box-left d-flex flex-row gap-3" onclick="toBoard()">
+                        <div class="to-do-card copy-black d-flex flex-column align-items-center">
+                            <div class=" copy-black top-box">
+                                <div><img src="../img/dash_board.png" alt=""></div>
+                                <div id="task-in-board">0</div>
+                            </div>
+                            <span class="copy-blue font-light">Task in Board</span>
+
+                        </div>
+                        <div class="to-do-card  copy-black d-flex flex-column align-items-center">
+                            <div class=" copy-black d-flex align-items-center gap-3">
+                                <div><img src="../img/in_progress.png" alt=""></div>
+                                <div id="task-in-progress">0</div>
+                            </div>
+                            <span class="copy-blue font-light">Task in Progress</span>
+
+                        </div>
+                    </div>
+                    <div class="box-right  d-flex flex-row gap-3" onclick="toBoard()">
+                        <div class="to-do-card copy-black d-flex flex-column align-items-center">
+                            <div class=" copy-black d-flex align-items-center gap-3">
+                                <div><img src="../img/awaiting_feedback.png" alt=""></div>
+                                <div id="awaiting-feedback">0</div>
+                            </div>
+                            <span class="copy-blue font-light">Awaiting Feedback</span>
+
+                        </div>
+                        <div class="to-do-card  copy-black d-flex flex-column align-items-center">
+                            <div class=" copy-black d-flex align-items-center gap-3">
+                                <div><img src="../img/done.png" alt=""></div>
+                                <div id="tasks-done">0</div>
+                            </div>
+                            <span class="copy-blue font-light">Tasks Done</span>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </main>
+        <!-- MAIN END  -->
+
+    </div>
+
+</body>
+
+</html>

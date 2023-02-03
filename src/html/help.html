@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/style_media.css">
+    <link rel="stylesheet" href="../css/legal_notice.css">
+    <link rel="stylesheet" href="../css/fonts.css">
+    <link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="shortcut icon" href="../img/logo_blue.png" type="image/x-icon">
+
+    <script src="../js/mini_backend.js"></script>
+    <script src="../js/script.js"></script>
+    <script src="../js/board.js"></script>
+    <script defer src="../js/sidebar.js"></script>
+    <script src="../js/logIn_register.js"></script>
+    <title>Join - Help</title>
+</head>
+
+<body onload="init()">
+    <div class="container-fluid mh-100 d-flex flex-column">
+
+        <!-- HEADER START -->
+        <div w3-include-html="../templates/header.html"></div>
+        <!-- HEADER END -->
+
+        <!-- SIDE BAR START -->
+        <div w3-include-html="../templates/sidebar.html"></div>
+        <!-- SIDEBAR END  -->
+
+        <!-- BODY START -->
+        <main class="legalNotice__wrapper">
+            <div>
+                <h1>Help</h1>
+            </div>
+            <div class="legalNotice__back--button">
+                <a onclick="history.back()"><img src="../img/arrow_back.png"></a>
+            </div>
+            <div class="legalNotice__impressum--container">
+                <h2>What is Join?</h1>
+                    <p> <b style="font-size: 1.3rem;">Join</b> is a bussiness oriented tool that is focused on
+                        helping a team (or an individual) to keep track of the Bussiness Projects. The application offers
+                        the posibility of a summarised overview throw "Summary" section, followed up by a more detailed
+                        area, such as "Board" section.<br>
+                        When required to insert additional tasks for the team, the Team-Leader have the possibility to
+                        create it via "Add Task" section or direct on "Board section". Additionally, the section
+                        "Contact" provides the possibility of saving individually the members contacts data.</p>
+
+                    <h2>How to use it</h2>
+                    <ol>
+                        <li>
+                            <ul>
+                                After loging in, the user is being welcome by an overview of all the tasks
+                                registered. The application can provide more informations by selecting any of the
+                                elements from the "Summary" section or by going on "Board" section.
+                            </ul>
+                        </li>
+                        <li>
+                            <ul>
+                                The "Board" section provides all the tasks in their current state and with the
+                                following availabilities:
+                                <ul>- Drag & Drop: in the requirenments of developing the task;</ul>
+                                <ul>- Edit: when needed, by selecting the task, the user have the posibility to modify
+                                    it. (ex. due date, assigned memmbers, etc.)</ul>
+                                <ul>- Add: to provide a multiple acces point, the user have the option to add new task
+                                    throw "Board" section.</ul>
+                                <ul>- Filter: a search option have been provided in order to find faster an specific
+                                    task. The task will be displayed in the current state section.</ul>
+                            </ul>
+                        </li>
+                        <li>
+                            <ul>
+                                If required to add a new task, the user has also this option via "Add Task" section.
+                            </ul>
+                        </li>
+                        <li>
+                            <ul>
+                                In order to keep easy contact with the other members, the user has the possibility
+                                to save their contact data in "Contact" section.
+                            </ul>
+                        </li>
+                    </ol>
+            </div>
+        </main>
+        <!-- BOARD END  -->
+
+    </div>
+
+</body>
+
+</html>

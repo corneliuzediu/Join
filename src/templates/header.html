@@ -1,0 +1,17 @@
+<script src="../js/sidebar.js"></script>
+
+<header>
+    <a class="join-logo" id="logo-reload">
+        <img onclick="toSummary()" src="../img/join-logo.png" alt="join-logo">
+    </a>
+    <div class="header-right-content">
+        <span>Kanban Project Managment Tool</span>
+        <a onclick="toHelp()" id="help" href="../html/help.html"><img class="help-icon" src="../img/help-icon.png" alt="help-icon"></a>
+        <img onclick="toLogOut()" id="userPhoto"class="acc-icon" src="../img/acc-icon.png" alt="acc-icon">
+        <div id="logOut__btn--container" class="logOut__btn--container d-none">
+            <a class="legalHelp"href="../html/help.html">Help</a>
+            <a class="legalHelp"href="../html/legal_notice.html">Legal Notice</a>
+            <button onclick="logOut()">Log Out</button>
+        </div>
+    </div>
+</header>
