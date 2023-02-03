@@ -223,9 +223,11 @@ async function logInByQuickAcces() {
     activeUser = await JSON.parse(stringStorage);
   }
   if (activeUser.quickAcces == true) {
-    let acces = activeUser.quickAcces;
-    let emailUser = activeUser.emailUser;
-    goToSummary(acces, emailUser);
+    document.getElementById('email').value = activeUser.userEmail;
+    document.getElementById('password').value = activeUser.userPassword;
+    // let acces = activeUser.quickAcces;
+    // let emailUser = activeUser.emailUser;
+    // goToSummary(acces, emailUser);
   }
 }
 
@@ -234,7 +236,6 @@ async function logInByQuickAcces() {
  * The function does the procceses for the "Log Out". 
  */
 async function logOut() {
-  activeUser.quickAcces = false;
   if (localStorage.getItem("activeUser") !== null) {
     await saveLocalActiveUser(activeUser);
   }
@@ -248,12 +249,12 @@ async function logOut() {
  * @param {string} emailUser - Value coresponding to the email given by the user.
  */
 async function checkIfRmemberMe(emailUser) {
-  let checkbox = callCheckBox();
-  if (checkbox == true) {
+  if (callCheckBox()) {
     await setActiveUser(emailUser);
     activeUser.quickAcces = true;
     await saveLocalActiveUser(activeUser)
-  } else if (checkbox = false) {
+  } else if (!callCheckBox()) {
+    activeUser.quickAcces = false;
     await deleteLocalActiveUser(activeUser);
   }
 } 

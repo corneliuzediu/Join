@@ -83,7 +83,8 @@ async function setActiveUser(userEmail) {
     let index = checkIfEmailExists(userEmail)
     indexActiveUser = index;
     activeUser = usersArray[indexActiveUser];
-    activeUser.quickAcces = true;
+    if (localStorage.getItem("activeUser") !== null)
+        activeUser.quickAcces = true;
 }
 
 
