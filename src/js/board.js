@@ -48,11 +48,14 @@ function filterTasks(array, id) {
   for (let i = 0; i < filter.length; i++) {
     const task = filter[i];
     document.getElementById(id).innerHTML += generateTodoHTML(task);
-    for (let j = 0; j < task["assignedTo"].length; j++) {
-      const assignedContacts = task["assignedTo"][j];
-      renderAllAssignedContacts(j, task, assignedContacts);
+    if (task["assignedTo"] != null) {
+      for (let j = 0; j < task["assignedTo"].length && task["assignedTo"].length != null; j++) {
+        const assignedContacts = task["assignedTo"][j];
+        renderAllAssignedContacts(j, task, assignedContacts);
+      }
     }
   }
+
 }
 
 /**
@@ -245,13 +248,15 @@ function showTaskModal(id2, taskID) {
   if (id2 == "task-modal") {
     document.getElementById("task-modal").innerHTML = generateTaskModalHTML(tasks[taskID]);
     generateTaskProcessStatus(taskID);
-    for (let i = 0; i < tasks[taskID]["assignedTo"].length; i++) {
-      const contacts = tasks[taskID]["assignedTo"][i];
-      document.getElementById(`assigned-contacts${taskID}`).innerHTML += generateTaskModalContactsHTML(
-        getInitials(contacts),
-        contacts,
-        setColorForInitial(getInitials(contacts))
-      );
+    if (tasks[taskID]["assignedTo"] != null) {
+      for (let i = 0; i < tasks[taskID]["assignedTo"].length || i == null; i++) {
+        const contacts = tasks[taskID]["assignedTo"][i];
+        document.getElementById(`assigned-contacts${taskID}`).innerHTML += generateTaskModalContactsHTML(
+          getInitials(contacts),
+          contacts,
+          setColorForInitial(getInitials(contacts))
+        );
+      }
     }
     responsiveTaskModalAnimation(id2);
   } else {
@@ -279,13 +284,15 @@ function editTasks(taskID) {
   renderContactsInEditDropDown(taskID);
   generateTaskProcessStatusforEditDialog(taskID);
   updateUrgencyBtns(taskID);
-  for (let i = 0; i < tasks[taskID]["assignedTo"].length; i++) {
-    const contacts = tasks[taskID]["assignedTo"][i];
-    document.getElementById("assigned-contacts").innerHTML += generateTaskModalContactsInitialsHTML(
-      getInitials(contacts),
-      contacts,
-      setColorForInitial(getInitials(contacts))
-    );
+  if (tasks[taskID]["assignedTo"] != null) {
+    for (let i = 0; i < tasks[taskID]["assignedTo"].length; i++) {
+      const contacts = tasks[taskID]["assignedTo"][i];
+      document.getElementById("assigned-contacts").innerHTML += generateTaskModalContactsInitialsHTML(
+        getInitials(contacts),
+        contacts,
+        setColorForInitial(getInitials(contacts))
+      );
+    }
   }
 
   if (tasks[taskID].subtasks) {

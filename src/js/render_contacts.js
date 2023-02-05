@@ -300,8 +300,10 @@ function renderContactsInEditDropDown(taskID) {
  */
 function assignedToContactTrue(taskID, name) {
   let checkedNames = [];
-  for (let i = 0; i < tasks[taskID]["assignedTo"].length; i++) {
-    checkedNames.push(tasks[taskID]["assignedTo"][i]);
+  if (tasks[taskID]["assignedTo"] != null) {
+    for (let i = 0; i < tasks[taskID]["assignedTo"].length; i++) {
+      checkedNames.push(tasks[taskID]["assignedTo"][i]);
+    }
   }
   if (checkedNames.includes(name)) {
     return true;

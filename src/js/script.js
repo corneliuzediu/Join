@@ -2,6 +2,7 @@
 let usersArray = [];      // Array that holds the user list from the backend;
 let activeUser = [];      // Array that holds the actiov user info;
 let activeUserContacts = [];  // Array that holds the contacts of the active user;
+// let taskArray = taskArray;
 
 /***    Functions   ***/
 
@@ -183,17 +184,33 @@ async function executeDeleteContacts() {
  * function saves all tasks of active user in Backend under this key 'activeUserEmail_task'
  */
 async function saveInBackendUserTasks() {
-  activeUserEmail = activeUser["userEmail"];
-  await backend.setItem(`${activeUserEmail}_task`, JSON.stringify(tasks));
+  await backend.setItem(`taskArray`, JSON.stringify(tasks));
 }
+//   activeUserEmail = activeUser["userEmail"];
+//   await backend.setItem(`${activeUserEmail}_task`, JSON.stringify(tasks));
+// }
 
 /**
  * function loads all active user tasks from Backend
  */
 async function loadUserTasksFromBackend() {
-  activeUserTasks = `${activeUser["userEmail"]}_task`;
+
+
+  /************       ********************/
+  // usersArray.forEach(async (user) => {
+  //   console.log(user);
+  //   keyEmailTasks = `${user.userEmail}_task`;
+  //   await downloadFromServer();
+  //   tasksUserKey = JSON.parse(backend.getItem(keyEmailTasks)) || [];
+  //   tasks.push(tasksUserKey);
+  // });
+
+
+
+  /************       ****************** */
   await downloadFromServer();
-  tasks = JSON.parse(backend.getItem(activeUserTasks)) || [];
+  // activeUserTasks = `${activeUser["userEmail"]}_task`;
+  tasks = JSON.parse(backend.getItem('taskArray')) || [];
 }
 
 

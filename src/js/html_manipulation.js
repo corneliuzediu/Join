@@ -266,9 +266,7 @@ function clearAddTaskInputFields() {
 function updateProgressBars() {
   for (let i = 0; i < tasks.length; i++) {
     let attribute = document.querySelector(`.progress-bar${i}`);
-    if (tasks[i].subtasks.length == 0) {
-      attribute.style.width = 0 + "%";
-    } else if (tasks[i].subtasks) {
+    if (tasks[i].subtasks != 0) {
       if (calculateSubtaskProgress(tasks[i].subtasks) == 0) {
         attribute.style.width = 0 + "%";
       } else if (calculateSubtaskProgress(tasks[i].subtasks) <= 0.2) {
