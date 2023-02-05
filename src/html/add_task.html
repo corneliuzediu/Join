@@ -19,6 +19,7 @@
 
     <script src="../js/mini_backend.js"></script>
     <script src="../js/script.js"></script>
+    <script src="../js/summary.js"></script>
     <script defer src="../js/sidebar.js"></script>
     <script src="../js/board.js"></script>
     <script src="../js/add_task.js"></script>
@@ -67,7 +68,7 @@
                             </div>
                             <div class="form-width input-title margin-btn-25">
                                 <input class="add-title input-title-font" type="text" placeholder="Enter a title"
-                                    id="title" required>
+                                    id="title"> <!-- required -->
                             </div>
                             <div class="uniform-sizing text-19pt dropdown" role="button" data-bs-toggle="collapse"
                                 data-bs-target="#collapseContacts" aria-expanded="false"
@@ -86,7 +87,8 @@
                                 </div>
                             </div>
                             <div class="margin-btn-25 assign-contact-container" id="contact-container">
-                                <div class="dropdown-contacts-container collapse" id="collapseContacts" required>
+                                <div class="dropdown-contacts-container collapse" id="collapseContacts">
+                                    <!-- required -->
                                     <div class="dropdown-contact"
                                         onclick="openContactInput('contact-dropdown', 'contact-input-area', 'contact-input')"
                                         role="button" data-bs-toggle="collapse" data-bs-target="#collapseContacts"
@@ -98,7 +100,7 @@
                             </div>
                             <div class="date-area flex-column margin-btn-45">
                                 <span class="category-header">Due date</span>
-                                <input id="date" class="uniform-sizing" type="date" required>
+                                <input id="date" class="uniform-sizing" min="2020-02-05" max="2025-02-01" type="date"> <!-- required -->
                             </div>
                             <div class="category-area flex-column">
                                 <span class="category-header">Category</span>

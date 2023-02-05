@@ -8,6 +8,7 @@ let taskAddedAtAddTaskHTML = false;
 async function init_add_task() {
   await init();
   renderContactsInDropDown();
+  getTodaysDate();
 }
 
 /**
@@ -19,6 +20,21 @@ function changeUrgencyHigh() {
   document.getElementById("img-prio-high").style.backgroundImage = "url('../img/prio_high_white.png')";
   document.getElementById("img-prio-high").style.backgroundRepeat = "no-repeat";
   event.preventDefault();
+}
+
+
+/** The function provides the date of today for date picker  */
+function getTodaysDate() {
+  let date = new Date();
+  let day = date.getDate();
+  let month = date.getMonth();
+  let year = date.getFullYear();
+  let today = year + '-' + month + '-' + day;
+  console.log(day);
+  console.log(month);
+  console.log(year);
+  console.log(today);
+  document.getElementById("date").setAttribute("min", today);
 }
 
 /**

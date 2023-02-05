@@ -62,8 +62,8 @@
                             <img src="../img/check-icon.png" alt="add-icon">
                         </button>
                         <div class="form-width input-title margin-btn-25">
-                            <input class="add-title input-title-font" type="text" placeholder="Enter a title" id="title"
-                                required>
+                            <input class="add-title input-title-font" type="text" placeholder="Enter a title"
+                                id="title"> <!-- required -->
                         </div>
                         <div class="uniform-sizing text-19pt dropdown" role="button" data-bs-toggle="collapse"
                             data-bs-target="#collapseContacts" aria-expanded="false" aria-controls="collapseContacts"
@@ -82,7 +82,7 @@
                             </div>
                         </div>
                         <div class="margin-btn-25 assign-contact-container" id="contact-container">
-                            <div class="dropdown-contacts-container collapse" id="collapseContacts" required>
+                            <div class="dropdown-contacts-container collapse" id="collapseContacts" > <!-- required -->
                                 <div class="dropdown-contact"
                                     onclick="openContactInput('contact-dropdown', 'contact-input-area', 'contact-input')"
                                     role="button" data-bs-toggle="collapse" data-bs-target="#collapseContacts"
@@ -95,7 +95,7 @@
                         </div>
                         <div class="date-area flex-column margin-btn-45">
                             <span class="category-header">Due date</span>
-                            <input id="date" class="uniform-sizing" type="date" required>
+                            <input id="date" class="uniform-sizing" type="date"> <!-- required -->
                         </div>
                         <div class="category-area flex-column">
                             <span class="category-header">Category</span>

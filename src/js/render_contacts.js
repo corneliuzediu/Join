@@ -185,7 +185,7 @@ function generateContactEditDialog(index) {
                         <form class="add-contact_form" onsubmit="updateUserContact(${index}); return false;">
                             <div class="add-contact-input-field">
                                 <input id="edit-contact-name" class="contact-form-control contacts_input" type="text"
-                                    placeholder="Name" required>
+                                    placeholder="Name" required> 
                                 <img src="/src/img/input_name.png" alt="">
                             </div>
                             <div class="add-contact-input-field">
