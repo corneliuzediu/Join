@@ -42,17 +42,27 @@
         scrollbar-width: none;
     }
 
+
+    .main {
+        margin-top: 130px !important;
+    }
+
+
+    .gap-summary {
+        gap: 25px !important;
+    }
+
     .container {
         padding-bottom: 110px;
     }
 
-    .greeting {
+    /* .greeting {
         display: none;
-    }
+    } */
 
-    body>div>main>div>div.d-none-not-important.headline-resp {
+    /* body>div>main>div>div.d-none-not-important.headline-resp {
         display: block !important;
-    }
+    } */
 
     /* .main {
         display: flex;
@@ -80,7 +90,7 @@
 
 
     .main {
-        margin-top: 50px !important;
+        margin-top: 20px !important;
     }
 }
 
@@ -126,22 +136,33 @@
         font-size: 2rem !important;
     }
 
-    .container {
-        padding-left: 0;
-        padding-right: 0;
-        align-items: center !important;
+
+    .alert-card,
+    .alert-card-paleblue,
+    .box-left,
+    .box-right {
+        min-width: 90vw !important;
     }
 
-    .box-right,
-    .box-left {
+
+
+    .container {
+        flex-direction: column !important;
+    }
+
+    .date__deadline {
+        display: flex;
+        flex-direction: column;
         align-items: center;
-        justify-content: center;
     }
 }
 
 @media (max-width: 350px) {}
 
 @media (max-width: 300px) {
+    .date__deadline span{
+        font-size: 14px;
+    }
 
     .headline-resp {
         text-align: center;
@@ -202,20 +223,20 @@
     #tasks-done {
         font-size: 1.5rem !important;
     }
-}
 
-.container {
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-    align-items: stretch !important;
-}
 
-body>div>main>div>div.top-summary-container.gap-3>div.alert-card.copy-white>div:nth-child(1),
-body>div>main>div>div.top-summary-container.gap-3>div.alert-card.copy-white>div:nth-child(3) {
-    padding-left: 5px;
-    padding-right: 5px;
-}
+    .container {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        align-items: stretch !important;
+    }
 
+    body>div>main>div>div.top-summary-container.gap-3>div.alert-card.copy-white>div:nth-child(1),
+    body>div>main>div>div.top-summary-container.gap-3>div.alert-card.copy-white>div:nth-child(3) {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+}
 
 /* landscape */
 ia screen (or@medientation : landscape) {

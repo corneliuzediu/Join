@@ -34,6 +34,10 @@ h2 {
   margin-right: 15px;
 }
 
+.gap-summary {
+  gap: 35px !important;
+}
+
 /* HEADER */
 
 header {
@@ -229,11 +233,9 @@ header {
 }
 
 .summary-container {
-  /* width: 95%;  NO WIDTH IMPORTANT TO HAVE CARDS ALWAYS MIDDLED OUT HORIZONTALLY */
   display: flex;
   flex-direction: column;
   justify-content: center;
-  row-gap: 15px;
 }
 
 .top-summary-container {
@@ -262,6 +264,7 @@ header {
   justify-content: space-evenly;
   align-items: center;
   height: 190px;
+  flex-grow: 1;
   min-width: 600px;
   background: #4589ff;
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
