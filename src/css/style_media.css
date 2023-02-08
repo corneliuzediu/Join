@@ -47,6 +47,7 @@
   .alert-card {
     width: 65vw;
     min-width: 363px;
+    max-width: unset;
     height: 150px;
     background: #4589ff;
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
@@ -67,7 +68,6 @@
     border-radius: 30px;
     font-size: 38px;
     display: flex;
-    flex-direction: row !important;
     justify-content: center;
     align-items: center;
     padding: 15px 40px;
@@ -81,7 +81,7 @@
   .to-do-card {
     width: 30vw;
     min-width: 166.5px !important;
-    height: 150px !important;
+    height: 150px;
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
     border-radius: 30px;
     font-size: 38px;
@@ -283,5 +283,6 @@
 
   .to-do-card {
     width: unset !important;
+    height: 100px !important;
   }
 }

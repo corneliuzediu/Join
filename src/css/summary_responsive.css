@@ -30,6 +30,11 @@
     .summary-container {
         /* margin-top: 150px; */
     }
+
+
+    .alert-card, .alert-card-paleblue, .to-do-card{
+        height: 135px !important;
+    }
 }
 
 @media (max-width: 768px) {
