@@ -51,7 +51,7 @@ function clearForm() {
  */
 function selectCategory(category, color) {
   document.getElementById("category-dropdown").innerHTML = "";
-  document.getElementById("category-dropdown").innerHTML = category + `<div class="category-color ${color}"></div>`;
+  document.getElementById("category-dropdown").innerHTML = `<div class="dropdown-category-select">${category}  <div class="category-color ${color}"></div></div><img src="../img/select-arrow.png" alt="">`;
   document.getElementById("category-dropdown").classList.add("dropdown-active");
   document.getElementById(color).checked = true;
 }
@@ -64,10 +64,10 @@ function selectCategory(category, color) {
  */
 function generateCategoryHTML(category, color) {
   return `
-    <div onclick="selectCategory('${category}','${color}')" class="dropdown-category" id="">
-    <label for="category-${category}">${category}</label>
-    <input type="radio" name="category" id="category-${category}" value="${category}" role="button" data-bs-toggle="collapse"
-    data-bs-target="#collapseCategory" aria-expanded="false" aria-controls="collapseCategory">
+  <div onclick="selectCategory('${category}','${color}')" class="dropdown-category" id="" role="button" data-bs-toggle="collapse"
+  data-bs-target="#collapseCategory" aria-expanded="false" aria-controls="collapseCategory">
+  <label for="category-${category}">${category}</label>
+  <input type="radio" name="category" id="category-${category}" value="${category}">
     <div class="category-color ${color}"></div>
     </div>
     `;
@@ -316,15 +316,18 @@ function readSubtasks() {
 async function createTask(path) {
   let title = document.getElementById("title").value;
   let contactsCheckedBoxes = getCheckedBoxes("assign-contacts");
-  if (contactsCheckedBoxes == null) {
-    let validation = document.getElementById("title");
-    validation.setCustomValidity("Must set at least one contact");
-    validation.reportValidity();
-    return;
-  }
+
+  // if (document.querySelector('input[name="prio"]:checked').value == undefined) {
+  //   let validation = document.getElementById("title");
+  //   validation.setCustomValidity("Must set at least one contact");
+  //   validation.reportValidity();
+  //   return;
+  // }
+
   let date = document.getElementById("date").value;
   let category = document.getElementById("category-dropdown").textContent;
   let urgency = document.querySelector('input[name="prio"]:checked').value;
+  console.log(urgency)
   let description = document.getElementById("description-text").value;
   let color = document.querySelector("input[type=radio][name=color]:checked").value;
   let subtasks = readSubtasks();
