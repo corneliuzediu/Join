@@ -177,7 +177,7 @@ function getIndexOfEmail(newmail) {
  * @returns Upper Case Initials of FirstName and LastName in array
  */
 function setContactInitials(newName) {
-  var names = newName.split(" "),
+  let names = newName.split(" "),
     initials = names[0].substring(0, 1).toUpperCase();
   if (names.length > 1) {
     initials += names[names.length - 1].substring(0, 1).toUpperCase();

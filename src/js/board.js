@@ -97,8 +97,8 @@ function findTask() {
   filterSearchedTasks(tasks, "in-progress", search);
   filterSearchedTasks(tasks, "await-feedback", search);
   filterSearchedTasks(tasks, "done", search);
-  updateProgressBars();
-  updateProgressReport();
+  // updateProgressBars();
+  // updateProgressReport();
 }
 
 /**

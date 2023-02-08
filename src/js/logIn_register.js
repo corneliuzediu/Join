@@ -132,8 +132,8 @@ function logInUserGuest() {
  * @returns URL params value.
  */
 async function getActiveUserURL(emailUser) {
-    var first = "email";
-    var second = `${emailUser}`;
+    let first = "email";
+    let second = `${emailUser}`;
     let params = new URLSearchParams();
     params.append("first", first);
     params.append("second", JSON.stringify(second));
@@ -252,7 +252,7 @@ function getColor() {
  * @returns - A string made with the first letter of each word from "newName".
  */
 function getInitials(newName) {
-    var names = newName.split(" "),
+    let names = newName.split(" "),
         initials = names[0].substring(0, 1).toUpperCase();
     if (names.length > 1) {
         initials += names[names.length - 1].substring(0, 1).toUpperCase();

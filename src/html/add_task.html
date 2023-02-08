@@ -100,8 +100,7 @@
                             </div>
                             <div class="date-area flex-column margin-btn-45">
                                 <span class="category-header">Due date</span>
-                                <input id="date" class="uniform-sizing" min="2020-02-05" max="2025-02-01" type="date">
-                                <!-- required -->
+                                <input id="date" class="uniform-sizing" min="2020-02-05" max="2025-02-01" type="date"> <!-- required -->
                             </div>
                             <div class="category-area flex-column">
                                 <span class="category-header">Category</span>
@@ -163,12 +162,12 @@
                                     </div>
                                     <div onclick="selectCategory('Sales','pink')" class="dropdown-category">
                                         <label for="sales">Sales</label>
-                                        <input type="radio" name="category" id="sales" value="Sales">
+                                        <input type="radio" name="category" id="sales" value="Sales" role="button"
+                                            data-bs-toggle="collapse" data-bs-target="#collapseCategory"
+                                            aria-expanded="false" aria-controls="collapseCategory">
                                         <div class="category-color-pink"></div>
                                     </div>
-                                    <div onclick="selectCategory('Backoffice','turquoise')" class="dropdown-category"
-                                        role="button" data-bs-toggle="collapse" data-bs-target="#collapseCategory"
-                                        aria-expanded="false" aria-controls="collapseCategory">
+                                    <div onclick="selectCategory('Backoffice','turquoise')" class="dropdown-category">
                                         <label for="backoffice">Backoffice</label>
                                         <input type="radio" name="category" id="backoffice" value="Backoffice">
                                         <div class="category-color-turqoise"></div>

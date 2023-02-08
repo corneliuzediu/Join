@@ -96,9 +96,9 @@ async function getActiveUser() {
  * @returns - the email of the active user.
  */
 function collectActiveUserFromURL() {
-  var params = new URLSearchParams(window.location.search);
-  var first = params.get("first");
-  var userEmail = JSON.parse(params.get("second"));
+  let params = new URLSearchParams(window.location.search);
+  let first = params.get("first");
+  let userEmail = JSON.parse(params.get("second"));
   return userEmail;
 }
 
