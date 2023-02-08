@@ -97,6 +97,7 @@ function findTask() {
   filterSearchedTasks(tasks, "in-progress", search);
   filterSearchedTasks(tasks, "await-feedback", search);
   filterSearchedTasks(tasks, "done", search);
+  generateTemplate();
   // updateProgressBars();
   // updateProgressReport();
 }
@@ -118,6 +119,7 @@ function resetAllTasksContainer() {
  */
 function searchTask() {
   return document.getElementById("search").value == "";
+
 }
 
 /**

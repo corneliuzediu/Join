@@ -1,4 +1,4 @@
-function generateTodoHTML(task) {
+function generateTodoHTML(task) { 
   return `
       <div id="${task["id"]}" draggable="true" ondragstart="startDragging(${task["id"]}); rotateTask(); highlight()" onclick="openAddTaskDialog('task-overlay', 'task-modal', ${task["id"]})" class="board-task">
           <span class="department ${task["color"]}">${task["department"]}</span>
