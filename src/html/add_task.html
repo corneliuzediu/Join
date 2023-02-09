@@ -98,19 +98,19 @@
                             </div>
                             <div class="date-area flex-column margin-btn-45">
                                 <label for="date" class="category-header">Due date</label>
-                                <input id="date" class="uniform-sizing" data-date-start-date="0d" type="date" required>
+                                <input id="date" class="uniform-sizing" min type="date" required>
 
                             </div>
                             <div class="category-area flex-column">
                                 <label for="category-dropdown" class="category-header">Category</label>
-                                <div class="uniform-sizing text-19pt dropdown" role="button"
-                                    data-bs-toggle="collapse" data-bs-target="#collapseCategory" aria-expanded="false"
+                                <div class="uniform-sizing text-19pt dropdown" role="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseCategory" aria-expanded="false"
                                     aria-controls="collapseCategory" id="category-dropdown">
                                     <span>Select task category</span>
                                     <img src="../img/select-arrow.png" alt="">
                                 </div>
                             </div>
-                            <div class="category-container d-none" id="category-input-area">
+                            <div class="category-container d-none" id="category-input-area" aria-required="true">
                                 <div class="subtasks-input-area">
                                     <input class="" type="text" placeholder="New category name" id="category-input">
                                     <div class="subtask-icons">

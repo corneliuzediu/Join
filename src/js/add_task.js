@@ -25,9 +25,33 @@ function changeUrgencyHigh() {
 
 /** The function provides the date of today for date picker  */
 function getTodaysDate() {
-  let today = new Date();
-  console.log(today);
-  // document.getElementById("date").setAttribute("date-date-start-date", today);
+  let date = new Date();
+  let day = getDayNr(date);
+  let month = getMonthNr(date);
+  let year = date.getFullYear();
+  let today = year + "-" + month + "-" + day;
+  console.log(typeof today);
+  document.getElementById("date").setAttribute("min", today);
+}
+
+
+function getDayNr(date) {
+  let day = date.getDate();
+  if (day < 10) {
+    return day = "0" + day;
+  } else {
+    return day;
+  }
+}
+
+
+function getMonthNr(date) {
+  let month = ((date.getMonth()) + 1);
+  if (month < 10) {
+    return month = "0" + month;
+  } else {
+    return month;
+  }
 }
 
 /**
@@ -70,7 +94,12 @@ function generateCategoryHTML(category, color) {
  * reads user input in AddTask Dialog
  */
 function addNewCategory() {
-  let category = document.getElementById("category-input").value;
+  let category;
+  if (document.getElementById("category-input").value != "") {
+    category = document.getElementById("category-input").value
+  } else {
+    category = "No name added.";
+  }
   let color;
   if (document.querySelector("input[type=radio][name=color]:checked") !== null) {
     color = document.querySelector("input[type=radio][name=color]:checked").value;
@@ -340,6 +369,8 @@ async function createTask(path) {
   let color;
   if (document.querySelector("input[type=radio][name=color]:checked") !== null) {
     color = document.querySelector("input[type=radio][name=color]:checked").value;
+  } else {
+    color = "blue"
   }
   let subtasks = readSubtasks();
   if (path == true) {
@@ -447,7 +478,7 @@ function resetAddTaskForm() {
   document.querySelectorAll('input[name="assign-contacts"]:checked').forEach((checkbox) => {
     checkbox.checked = false;
   });
-  if(document.querySelector("input[type=radio][name=color]:checked") !== null){
+  if (document.querySelector("input[type=radio][name=color]:checked") !== null) {
     document.querySelector("input[type=radio][name=color]:checked").checked = false;
   }
   document.getElementById(

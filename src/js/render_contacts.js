@@ -261,8 +261,9 @@ function renderContactsInDropDown() {
     let name = activeUserContacts[i]["name"];
     content.innerHTML += `
         <div class="dropdown-contact">
-        <label for="${name}">${name}</label>
+        <label for="${name}" style="display: flex;align-items: center;justify-content: space-between;width: 100% !important;">${name}
         <input type="checkbox" id="${name}" name="assign-contacts" value="${name}">
+        </label>
     </div>`;
   }
 }
