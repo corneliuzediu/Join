@@ -135,12 +135,12 @@ function getNewContactInfo() {
  */
 function sortActiveUserContacts() {
   activeUserContacts.sort((a, b) => {
-    const nameA = a.name.toUpperCase(); // ignore upper and lowercase
-    const nameB = b.name.toUpperCase(); // ignore upper and lowercase
-    if (nameA < nameB) {
+    const firstName = a.name.toUpperCase(); // ignore upper and lowercase
+    const secondName = b.name.toUpperCase(); // ignore upper and lowercase
+    if (firstName < secondName) {
       return -1;
     }
-    if (nameA > nameB) {
+    if (firstName > secondName) {
       return 1;
     }
     // names must be equal
@@ -185,27 +185,4 @@ function setContactInitials(newName) {
     initials = newName.substring(0, 2).toUpperCase();
   }
   return initials;
-}
-
-/**
- *
- * @param {string} initials
- * @returns a string that represents one of 5 possible rgb colors
- */
-function setColorForInitial(initials) {
-  let number = 0;
-  for (let i = 0; i < initials.length; i++) {
-    let letterNumber = initials.charCodeAt(i) - 64;
-    number = number + letterNumber;
-  }
-  let remainder = number % 5;
-  if (remainder === 0) {
-    return "rgb(221,70,60)";
-  } else if (remainder === 1) {
-    return "rgb(252,188,201)";
-  } else if (remainder === 2) {
-    return "rgb(99,191,215)";
-  } else if (remainder === 3) {
-    return "rgb(253,197,38)";
-  } else return "rgb(128,168,77)";
 }

@@ -25,16 +25,9 @@ function changeUrgencyHigh() {
 
 /** The function provides the date of today for date picker  */
 function getTodaysDate() {
-  let date = new Date();
-  let day = date.getDate();
-  let month = date.getMonth();
-  let year = date.getFullYear();
-  let today = year + '-' + month + '-' + day;
-  console.log(day);
-  console.log(month);
-  console.log(year);
+  let today = new Date();
   console.log(today);
-  document.getElementById("date").setAttribute("min", today);
+  // document.getElementById("date").setAttribute("date-date-start-date", today);
 }
 
 /**
@@ -78,7 +71,12 @@ function generateCategoryHTML(category, color) {
  */
 function addNewCategory() {
   let category = document.getElementById("category-input").value;
-  let color = document.querySelector("input[type=radio][name=color]:checked").value;
+  let color;
+  if (document.querySelector("input[type=radio][name=color]:checked") !== null) {
+    color = document.querySelector("input[type=radio][name=color]:checked").value;
+  } else {
+    color = "blue";
+  }
   document.getElementById("collapseCategory").innerHTML += generateCategoryHTML(category, color);
   closeCategoryInput();
   selectCategory(category, color);
@@ -113,17 +111,23 @@ function getValueFromEditInputs(taskID) {
   let editProcessStatus = selectedOption.options[selectedOption.selectedIndex].value;
   let editDate = document.getElementById(`edit-date${taskID}`).value;
   let contactsCheckedBoxes = getCheckedBoxes("assign-contacts");
+  let indexTask;
+  tasks.forEach(task => {
+    if (taskID == task.id) {
+      indexTask = tasks.indexOf(task);
+    };
+  })
   document.querySelectorAll('input[name="prio-edit"]').forEach((check) => {
     if (check.checked) {
-      tasks[taskID]["priority"] = check.value;
+      tasks[indexTask]["priority"] = check.value;
     }
   });
-  tasks[taskID]["headline"] = editHeadline;
-  tasks[taskID]["description"] = editDescription;
-  tasks[taskID]["category"] = editProcessStatus;
-  tasks[taskID]["dueDate"] = editDate;
-  tasks[taskID]["assignedTo"] = contactsCheckedBoxes;
-  tasks[taskID]["subtasks"] = readSubtasks();
+  tasks[indexTask]["headline"] = editHeadline;
+  tasks[indexTask]["description"] = editDescription;
+  tasks[indexTask]["category"] = editProcessStatus;
+  tasks[indexTask]["dueDate"] = editDate;
+  tasks[indexTask]["assignedTo"] = contactsCheckedBoxes;
+  tasks[indexTask]["subtasks"] = readSubtasks();
 }
 
 /**
@@ -298,7 +302,6 @@ function readSubtasks() {
     myElement = document.getElementById("subtask-edit-container"); //get all Subtasks as DOM Elements
   } else {
     myElement = document.getElementById("subtask-container"); //get all Subtasks as DOM Elements
-    // myElement.childElementCount gets the count of children and is identical with children.length
   }
   for (let i = 0; i < myElement.childElementCount; i++) {
     let checkBox = myElement.children[i].querySelector("input").checked; //tests if checkbox is false or true
@@ -314,29 +317,36 @@ function readSubtasks() {
  * @returns The information inserted by the user.
  */
 async function createTask(path) {
+  debugger;
   let title = document.getElementById("title").value;
+  let taskID = new Date().getTime();
   let contactsCheckedBoxes = getCheckedBoxes("assign-contacts");
-
   // if (document.querySelector('input[name="prio"]:checked').value == undefined) {
-  //   let validation = document.getElementById("title");
+  //   let validation = document.querySelector('input[name="prio"]:checked');
   //   validation.setCustomValidity("Must set at least one contact");
   //   validation.reportValidity();
   //   return;
   // }
-
   let date = document.getElementById("date").value;
   let category = document.getElementById("category-dropdown").textContent;
-  let urgency = document.querySelector('input[name="prio"]:checked').value;
-  console.log(urgency)
+  let urgency;
+  if (document.querySelector('input[name="prio"]:checked') === null) {
+    checkButton('medium');
+    urgency = document.querySelector('input[name="prio"]:checked').value;
+  } else {
+    urgency = document.querySelector('input[name="prio"]:checked').value;
+  }
   let description = document.getElementById("description-text").value;
-  let color = document.querySelector("input[type=radio][name=color]:checked").value;
+  let color;
+  if (document.querySelector("input[type=radio][name=color]:checked") !== null) {
+    color = document.querySelector("input[type=radio][name=color]:checked").value;
+  }
   let subtasks = readSubtasks();
-
   if (path == true) {
     taskAddedAtAddTaskHTML = true;
-    addTaskCreateTask(tasks.length, category, title, description, contactsCheckedBoxes, urgency, date, color, subtasks);
+    addTaskCreateTask(taskID, category, title, description, contactsCheckedBoxes, urgency, date, color, subtasks);
   } else {
-    createNewTask(tasks.length, category, title, description, contactsCheckedBoxes, urgency, date, color, subtasks);
+    createNewTask(taskID, category, title, description, contactsCheckedBoxes, urgency, date, color, subtasks);
   }
   clearAddTaskInputFields();
 }
@@ -354,7 +364,7 @@ async function createTask(path) {
  * @param {array} subtasks - the subtask array.
  */
 async function createNewTask(
-  array,
+  taskID,
   category,
   title,
   description,
@@ -364,9 +374,8 @@ async function createNewTask(
   color,
   subtasks
 ) {
-  new CreateTask(tasks.length, category, title, description, contactsCheckedBoxes, urgency, date, color, subtasks);
-  await saveInBackendUserTasks(tasks.length); // this saves all tasks in Backend
-  // await updateHTML();
+  new CreateTask(taskID, category, title, description, contactsCheckedBoxes, urgency, date, color, subtasks);
+  await saveInBackendUserTasks(tasks.length); // this saves all tasks in Backend0
   addToBoard();
   taskAddedToBoard();
   setTimeout(() => {
@@ -388,7 +397,7 @@ async function createNewTask(
  * @param {string} color - the task color.
  */
 async function addTaskCreateTask(
-  array,
+  taskID,
   category,
   title,
   description,
@@ -398,9 +407,8 @@ async function addTaskCreateTask(
   color,
   subtasks
 ) {
-  new CreateTask(tasks.length, category, title, description, contactsCheckedBoxes, urgency, date, color, subtasks);
+  new CreateTask(taskID, category, title, description, contactsCheckedBoxes, urgency, date, color, subtasks);
   await saveInBackendUserTasks(tasks.length); // this saves all tasks in Backend
-  // await updateHTML();
   addToBoard();
   taskAddedAnimation();
 }
@@ -439,7 +447,9 @@ function resetAddTaskForm() {
   document.querySelectorAll('input[name="assign-contacts"]:checked').forEach((checkbox) => {
     checkbox.checked = false;
   });
-  document.querySelector("input[type=radio][name=color]:checked").checked = false;
+  if(document.querySelector("input[type=radio][name=color]:checked") !== null){
+    document.querySelector("input[type=radio][name=color]:checked").checked = false;
+  }
   document.getElementById(
     "category-dropdown"
   ).innerHTML = `<span>Select task category</span><img src="../img/select-arrow.png" alt="">`;

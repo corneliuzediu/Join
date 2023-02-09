@@ -276,19 +276,11 @@ function renderContactsInEditDropDown(taskID) {
   content.innerHTML = " ";
   for (let i = 0; i < activeUserContacts.length; i++) {
     let name = activeUserContacts[i]["name"];
-    if (assignedToContactTrue(taskID, name)) {
-      content.innerHTML += `
+    content.innerHTML += `
         <div class="dropdown-contact">
         <label for="${name}">${name}</label>
-        <input type="checkbox" checked="checked" id="${name}" name="assign-contacts" value="${name}">
+        <input type="checkbox" checked="${assignedToContactTrue(taskID, name) ? "checked" : ""}" id="${name}" name="assign-contacts" value="${name}">
     </div>`;
-    } else {
-      content.innerHTML += `
-        <div class="dropdown-contact">
-        <label for="${name}">${name}</label>
-        <input type="checkbox" id="${name}" name="assign-contacts" value="${name}">
-    </div>`;
-    }
   }
 }
 
@@ -305,9 +297,5 @@ function assignedToContactTrue(taskID, name) {
       checkedNames.push(tasks[taskID]["assignedTo"][i]);
     }
   }
-  if (checkedNames.includes(name)) {
-    return true;
-  } else {
-    return false;
-  }
+  return (checkedNames.includes(name))
 }

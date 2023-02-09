@@ -368,7 +368,66 @@
     top: 34px;
     right: 34px;
     margin-top: 0 !important;
+}
+
+
+.delete-icon-overlay {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    right: -250%;
     cursor: pointer;
+    width: 40px;
+    height: 40px;
+    padding: 10px;
+    background-color: hsl(0, 100%, 65%);
+    border-color: unset;
+    border-radius: 20px;
+}
+
+
+.delete-icon-overlay:hover {
+    background-color: hsl(0, 100%, 55%);
+}
+
+
+.delete-icon-overlay img {
+    object-fit: cover;
+    width: 20px;
+    height: 20px;
+}
+
+
+.ifToBeDeleted__wrapper {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 300px;
+    height: 150px;
+    top: -200%;
+    padding: 10px 20px;
+    background-color: hsl(0, 100%, 65%);
+    border-radius: 20px;
+}
+
+
+.ifToBeDeleted__wrapper button {
+    color: white;
+    background-color: #4589FF;
+    border: 1px solid #4589FF;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+
+.ifToBeDeleted__wrapper button:hover {
+    background-color: #005DFF;
+    border: 1px solid #005DFF;
+    box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
+    transition: all 125ms ease-in-out;
 }
 
 .department-overlay {
@@ -477,6 +536,13 @@
 .ok-btn {
     width: 84px;
     height: 61px;
+}
+
+
+.button-edit-task-area-confirm {
+    position: relative;
+    display: flex;
+    align-items: center;
 }
 
 .button-edit-task-area-confirm,
@@ -1107,9 +1173,6 @@ input[type="checkbox"]:checked {
         width: 33%;
     }
 
-    .task-modal-container {
-        padding: 0 20px;
-    }
 
     .close-icon-overlay {
         content: url('../img/arrow-back-modal-task.png');
@@ -1118,6 +1181,7 @@ input[type="checkbox"]:checked {
         top: 30px;
         right: 47px;
     }
+
 
     .department-overlay {
         font-size: 21px;
@@ -1266,7 +1330,7 @@ input[type="checkbox"]:checked {
 
 @media (max-width: 480px) {
     .task-modal-container {
-        padding: 10px;
+        padding: 30px 20px;
     }
 
     .task-modal {
@@ -1415,6 +1479,12 @@ input[type="checkbox"]:checked {
     #task-move-to>form>input[type=submit] {
         margin-left: 0 !important;
     }
+
+
+    .close-icon-overlay {
+        right: 25px;
+        top: 10px;
+    }
 }
 
 @media (max-width: 320px) {
@@ -1459,9 +1529,6 @@ input[type="checkbox"]:checked {
         align-items: flex-start;
     }
 
-    .close-icon-overlay {
-        right: 25px;
-    }
 
     #subtask-input {
         width: 165px;

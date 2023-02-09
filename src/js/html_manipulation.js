@@ -246,27 +246,11 @@ function clearAddTaskInputFields() {
   }
 }
 
-/**
- * The function modifies the Html element to show the completion of the task.
- */
-// function updateProgressBars() {
-//   document.querySelectorAll(".progress-bar").forEach((e) => {
-//     if (boardTaskContainerId(e) == "to-do") {
-//       e.style.width = 0;
-//     } else if (boardTaskContainerId(e) == "in-progress") {
-//       e.style.width = 33 + "%";
-//     } else if (boardTaskContainerId(e) == "await-feedback") {
-//       e.style.width = 66 + "%";
-//     } else if (boardTaskContainerId(e) == "done") {
-//       e.style.width = 100 + "%";
-//     }
-//   });
-// }
 
 function updateProgressBars() {
   for (let i = 0; i < tasks.length; i++) {
     let attribute = document.querySelector(`.progress-bar${i}`);
-    if (tasks[i].subtasks != 0) {
+    if (tasks[i].subtasks != 0 && i != undefined && attribute != null) {
       if (calculateSubtaskProgress(tasks[i].subtasks) == 0) {
         attribute.style.width = 0 + "%";
       } else if (calculateSubtaskProgress(tasks[i].subtasks) <= 0.2) {
@@ -290,31 +274,18 @@ function updateProgressBars() {
 function updateProgressReport() {
   for (let i = 0; i < tasks.length; i++) {
     let attribute = document.querySelector(`.progress-report${i}`);
-    if (!tasks[i].subtasks.length == 0) {
-      let isChecked, count;
-      [isChecked, count] = getSubtaskCheckboxesChecked(tasks[i].subtasks);
-      attribute.innerHTML = `${isChecked} / ${count} done`;
-    } else {
-      attribute.innerHTML = `no subtasks`;
+    if (attribute != null) {
+      if (!tasks[i].subtasks.length == 0 && i != undefined) {
+        let isChecked, count;
+        [isChecked, count] = getSubtaskCheckboxesChecked(tasks[i].subtasks);
+        attribute.innerHTML = `${isChecked} / ${count} done`;
+      } else {
+        attribute.innerHTML = `no subtasks`;
+      }
     }
   }
 }
-// /**
-//  * The function is updating the Html element to show the completion of the task.
-//  */
-// function updateProgressReport() {
-//   document.querySelectorAll(".progress-report").forEach((e) => {
-//     if (boardTaskContainerId(e) == "to-do") {
-//       e.innerHTML = 0;
-//     } else if (boardTaskContainerId(e) == "in-progress") {
-//       e.innerHTML = 1;
-//     } else if (boardTaskContainerId(e) == "await-feedback") {
-//       e.innerHTML = 2;
-//     } else if (boardTaskContainerId(e) == "done") {
-//       e.innerHTML = 3;
-//     }
-//   });
-// }
+
 
 /**
  * The function is showing the confirmation of the task being added.
@@ -342,4 +313,29 @@ function closeTaskAddedToBoard() {
 function resetTaskAddedToBoard() {
   let taskAdded = document.getElementById("task-added");
   taskAdded.style.transform = "";
+}
+
+
+/**
+ * The function forwards to "Log In" page.
+ */
+function toLogInPage() {
+  window.location.href = "./../../index.html";
+}
+
+
+/**
+ * The function shows the HTML element where the "Log Out" button is situated.
+ */
+function toLogOut() {
+  const target = document.getElementById('userPhoto');
+  document.addEventListener('click', (event) => {
+    const withinBoundaries = event.composedPath().includes(target)
+    const tologOut = document.getElementById('logOut__btn--container');
+    if (withinBoundaries) {
+      tologOut.classList.remove('d-none');
+    } else {
+      tologOut.classList.add('d-none');
+    }
+  });
 }

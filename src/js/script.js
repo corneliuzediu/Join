@@ -186,24 +186,12 @@ async function executeDeleteContacts() {
 async function saveInBackendUserTasks() {
   await backend.setItem(`taskArray`, JSON.stringify(tasks));
 }
-//   activeUserEmail = activeUser["userEmail"];
-//   await backend.setItem(`${activeUserEmail}_task`, JSON.stringify(tasks));
-// }
+
 
 /**
  * function loads all active user tasks from Backend
  */
 async function loadUserTasksFromBackend() {
-
-
-  /************       ********************/
-  // usersArray.forEach(async (user) => {
-  //   console.log(user);
-  //   keyEmailTasks = `${user.userEmail}_task`;
-  //   await downloadFromServer();
-  //   tasksUserKey = JSON.parse(backend.getItem(keyEmailTasks)) || [];
-  //   tasks.push(tasksUserKey);
-  // });
 
 
 
@@ -261,6 +249,37 @@ async function logOut() {
 
 
 /**
+ * The funtion transform a copy of the email into variable "param".
+ * 
+ * @param {string} emailUser - Value coresponding to the email given by the user.
+ * @returns URL params value.
+ */
+async function getActiveUserURL(emailUser) {
+  let first = "email";
+  let second = `${emailUser}`;
+  let params = new URLSearchParams();
+  params.append("first", first);
+  params.append("second", JSON.stringify(second));
+  console.log(params)
+  return params;
+}
+
+
+/**
+ * The function selects the user from the user database and is giving the value to activeUser;
+ * 
+ * @param {string} userEmail - The value coresponds to the email provided by the user.
+ */
+async function setActiveUser(userEmail) {
+  let index = checkIfEmailExists(userEmail)
+  indexActiveUser = index;
+  activeUser = usersArray[indexActiveUser];
+  if (localStorage.getItem("activeUser") !== null)
+    activeUser.quickAcces = true;
+}
+
+
+/**
  * The funtion is checking if the user decided to be saved local.
  * 
  * @param {string} emailUser - Value coresponding to the email given by the user.
@@ -270,8 +289,63 @@ async function checkIfRmemberMe(emailUser) {
     await setActiveUser(emailUser);
     activeUser.quickAcces = true;
     await saveLocalActiveUser(activeUser)
-  } else if (!callCheckBox()) {
+  } else {
     activeUser.quickAcces = false;
     await deleteLocalActiveUser(activeUser);
   }
-} 
+}
+
+
+/**
+ * The functions is checking if email does exist in database.
+ * 
+ * @param {string} emailUser - Email provided by the user.
+ * @returns - An index coresponding to the location in the "userArry" where the email has been found, otherwise "undefined".
+ */
+function checkIfEmailExists(emailUser) {
+  let emailArray = usersArray.map((email) => email.userEmail);
+  let findEmailIndex = emailArray.findIndex((email) => email == emailUser);
+  return findEmailIndex;
+}
+
+
+/**
+ * The function is taking the first letter from each word and creates a new word. 
+ * 
+ * @param {string} newName - Value coresponding to the givin name from the new user.
+ * @returns - A string made with the first letter of each word from "newName".
+ */
+function getInitials(newName) {
+  let names = newName.split(" "),
+    initials = names[0].substring(0, 1).toUpperCase();
+  if (names.length > 1) {
+    initials += names[names.length - 1].substring(0, 1).toUpperCase();
+  } else if (names.length == 1) {
+    initials = newName.substring(0, 2).toUpperCase();
+  }
+  return initials;
+}
+
+
+/**
+ *
+ * @param {string} initials
+ * @returns a string that represents one of 5 possible rgb colors
+ */
+function setColorForInitial(initials) {
+  let number = 0;
+  for (let i = 0; i < initials.length; i++) {
+    let letterNumber = initials.charCodeAt(i) - 64;
+    number = number + letterNumber;
+  }
+  let remainder = number % 5;
+  if (remainder === 0) {
+    return "rgb(221,70,60)";
+  } else if (remainder === 1) {
+    return "rgb(252,188,201)";
+  } else if (remainder === 2) {
+    return "rgb(99,191,215)";
+  } else if (remainder === 3) {
+    return "rgb(253,197,38)";
+  } else return "rgb(128,168,77)";
+}

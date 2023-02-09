@@ -19,16 +19,14 @@
 
     <script src="../js/mini_backend.js"></script>
     <script src="../js/script.js"></script>
-    <script src="../js/summary.js"></script>
     <script defer src="../js/sidebar.js"></script>
+    <script src="../js/html_manipulation.js"></script>
     <script src="../js/board.js"></script>
     <script src="../js/add_task.js"></script>
-    <script src="../models/create-subtask.class.js"></script>
     <script src="../models/create-task.class.js"></script>
+    <script src="../models/create-subtask.class.js"></script>
     <script src="../js/contacts.js"></script>
     <script src="../js/render_contacts.js"></script>
-    <script src="../js/logIn_register.js"></script>
-    <script src="../js/html_manipulation.js"></script>
     <script src="../js/template.js"></script>
     <script src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
     <title>Join - Add task</title>
@@ -68,7 +66,7 @@
                             </div>
                             <div class="form-width input-title margin-btn-25">
                                 <input class="add-title input-title-font" type="text" placeholder="Enter a title"
-                                    id="title"> <!-- required -->
+                                    id="title" required>
                             </div>
                             <div class="uniform-sizing text-19pt dropdown" role="button" data-bs-toggle="collapse"
                                 data-bs-target="#collapseContacts" aria-expanded="false"
@@ -99,14 +97,14 @@
                                 </div>
                             </div>
                             <div class="date-area flex-column margin-btn-45">
-                                <span class="category-header">Due date</span>
-                                <input id="date" class="uniform-sizing" min="2020-02-05" max="2025-02-01" type="date">
-                                <!-- required -->
+                                <label for="date" class="category-header">Due date</label>
+                                <input id="date" class="uniform-sizing" data-date-start-date="0d" type="date" required>
+
                             </div>
                             <div class="category-area flex-column">
-                                <span class="category-header">Category</span>
-                                <div class="uniform-sizing text-19pt dropdown" role="button" data-bs-toggle="collapse"
-                                    data-bs-target="#collapseCategory" aria-expanded="false"
+                                <label for="category-dropdown" class="category-header">Category</label>
+                                <div class="uniform-sizing text-19pt dropdown" role="button"
+                                    data-bs-toggle="collapse" data-bs-target="#collapseCategory" aria-expanded="false"
                                     aria-controls="collapseCategory" id="category-dropdown">
                                     <span>Select task category</span>
                                     <img src="../img/select-arrow.png" alt="">

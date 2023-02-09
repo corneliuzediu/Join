@@ -15,16 +15,14 @@
     <link rel="shortcut icon" href="../img/logo_blue.png" type="image/x-icon">
 
     <script src="../js/mini_backend.js"></script>
-    <script src="../js/template.js"></script>
     <script src="../js/script.js"></script>
     <script defer src="../js/sidebar.js"></script>
+    <script src="../js/board.js"></script>
+    <script src="../js/template.js"></script>
+    <script src="../js/add_task.js"></script>
     <script src="../models/create-task.class.js"></script>
     <script src="../models/create-subtask.class.js"></script>
-    <script src="../js/board.js"></script>
-    <script src="../js/add_task.js"></script>
-    <script src="../js/contacts.js"></script>
     <script src="../js/render_contacts.js"></script>
-    <script src="../js/logIn_register.js"></script>
     <script src="../js/html_manipulation.js"></script>
     <script src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
     <title>Join - Board</title>
@@ -63,7 +61,7 @@
                         </button>
                         <div class="form-width input-title margin-btn-25">
                             <input class="add-title input-title-font" type="text" placeholder="Enter a title"
-                                id="title"> <!-- required -->
+                                id="title" required>
                         </div>
                         <div class="uniform-sizing text-19pt dropdown" role="button" data-bs-toggle="collapse"
                             data-bs-target="#collapseContacts" aria-expanded="false" aria-controls="collapseContacts"
@@ -95,7 +93,7 @@
                         </div>
                         <div class="date-area flex-column margin-btn-45">
                             <span class="category-header">Due date</span>
-                            <input id="date" class="uniform-sizing" type="date"> <!-- required -->
+                            <input id="date" class="uniform-sizing" type="date" required>
                         </div>
                         <div class="category-area flex-column">
                             <span class="category-header">Category</span>

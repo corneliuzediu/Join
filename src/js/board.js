@@ -1,5 +1,6 @@
 /***    Variable    ***/
 let currentDraggedElement;
+let ifQuestionVissible = false;
 
 /***    Array       ***/
 let tasks = [];
@@ -20,6 +21,7 @@ async function initBoard() {
   await loadUserTasksFromBackend();
   addToBoard();
   getHighlight();
+  getTodaysDate();
 }
 
 /**
@@ -98,8 +100,8 @@ function findTask() {
   filterSearchedTasks(tasks, "await-feedback", search);
   filterSearchedTasks(tasks, "done", search);
   generateTemplate();
-  // updateProgressBars();
-  // updateProgressReport();
+  updateProgressBars();
+  updateProgressReport();
 }
 
 /**
@@ -248,11 +250,17 @@ function openAddTaskDialog(id, id2, taskID) {
  */
 function showTaskModal(id2, taskID) {
   if (id2 == "task-modal") {
-    document.getElementById("task-modal").innerHTML = generateTaskModalHTML(tasks[taskID]);
-    generateTaskProcessStatus(taskID);
-    if (tasks[taskID]["assignedTo"] != null) {
-      for (let i = 0; i < tasks[taskID]["assignedTo"].length || i == null; i++) {
-        const contacts = tasks[taskID]["assignedTo"][i];
+    let indexTask;
+    tasks.forEach(task => {
+      if (taskID == task.id) {
+        indexTask = tasks.indexOf(task);
+      };
+    })
+    document.getElementById("task-modal").innerHTML = generateTaskModalHTML(tasks[indexTask]);
+    generateTaskProcessStatus(indexTask);
+    if (tasks[indexTask]["assignedTo"] != null) {
+      for (let i = 0; i < tasks[indexTask]["assignedTo"].length || i == null; i++) {
+        const contacts = tasks[indexTask]["assignedTo"][i];
         document.getElementById(`assigned-contacts${taskID}`).innerHTML += generateTaskModalContactsHTML(
           getInitials(contacts),
           contacts,
@@ -282,13 +290,19 @@ function boardTaskContainerId(e) {
  */
 function editTasks(taskID) {
   editTaskMarker = true;
-  document.getElementById("task-modal").innerHTML = generateEditTaskHTML(tasks[taskID]);
-  renderContactsInEditDropDown(taskID);
-  generateTaskProcessStatusforEditDialog(taskID);
-  updateUrgencyBtns(taskID);
-  if (tasks[taskID]["assignedTo"] != null) {
-    for (let i = 0; i < tasks[taskID]["assignedTo"].length; i++) {
-      const contacts = tasks[taskID]["assignedTo"][i];
+  let indexTask;
+  tasks.forEach(task => {
+    if (taskID == task.id) {
+      indexTask = tasks.indexOf(task);
+    };
+  })
+  document.getElementById("task-modal").innerHTML = generateEditTaskHTML(tasks[indexTask]);
+  renderContactsInEditDropDown(indexTask);
+  generateTaskProcessStatusforEditDialog(indexTask);
+  updateUrgencyBtns(indexTask);
+  if (tasks[indexTask]["assignedTo"] != null) {
+    for (let i = 0; i < tasks[indexTask]["assignedTo"].length; i++) {
+      const contacts = tasks[indexTask]["assignedTo"][i];
       document.getElementById("assigned-contacts").innerHTML += generateTaskModalContactsInitialsHTML(
         getInitials(contacts),
         contacts,
@@ -297,11 +311,11 @@ function editTasks(taskID) {
     }
   }
 
-  if (tasks[taskID].subtasks) {
-    let subtaskLength = tasks[taskID].subtasks.length;
+  if (tasks[indexTask].subtasks) {
+    let subtaskLength = tasks[indexTask].subtasks.length;
     for (let i = 0; i < subtaskLength; i++) {
-      const subtaskName = tasks[taskID].subtasks[i].subtaskName;
-      const checkBox = tasks[taskID].subtasks[i].checkBox;
+      const subtaskName = tasks[indexTask].subtasks[i].subtaskName;
+      const checkBox = tasks[indexTask].subtasks[i].checkBox;
       document.getElementById("subtask-edit-container").innerHTML += createSubtaskEditHTML(subtaskName, checkBox);
     }
   }
@@ -330,4 +344,36 @@ async function saveTasks(taskID) {
   closeAddTaskDialog("task-modal", "task-overlay");
   await saveInBackendUserTasks();
   addToBoard();
+}
+
+
+function showIfDeleteQuestion() {
+  ifQuestionVissible = !ifQuestionVissible;
+  if (ifQuestionVissible) {
+    document.getElementById('ifToBeDeleted__wrapper').classList.remove('d-none');
+  } else {
+    document.getElementById('ifToBeDeleted__wrapper').classList.add('d-none');
+  }
+}
+
+
+async function ifDeleteTask(answear, id) {
+  if (answear == true) {
+    deleteTask(id);
+    closeAddTaskDialog('task-modal', 'task-overlay');
+    await saveInBackendUserTasks();
+    addToBoard();
+  };
+};
+
+
+function deleteTask(id) {
+  tasks.forEach(task => {
+    if (task.id == id) {
+      let taskIndex = tasks.indexOf(task);
+      console.log(tasks)
+      tasks.splice(taskIndex, 1);
+      console.log(tasks)
+    };
+  });
 }

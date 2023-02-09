@@ -75,45 +75,6 @@ function callCheckBox() {
 
 
 /**
- * The function selects the user from the user database and is giving the value to activeUser;
- * 
- * @param {string} userEmail - The value coresponds to the email provided by the user.
- */
-async function setActiveUser(userEmail) {
-    let index = checkIfEmailExists(userEmail)
-    indexActiveUser = index;
-    activeUser = usersArray[indexActiveUser];
-    if (localStorage.getItem("activeUser") !== null)
-        activeUser.quickAcces = true;
-}
-
-
-/**
- * The function forwards to "Log In" page.
- */
-function toLogInPage() {
-    window.location.href = "./../../index.html";
-}
-
-
-/**
- * The function shows the HTML element where the "Log Out" button is situated.
- */
-function toLogOut() {
-    const target = document.getElementById('userPhoto');
-    document.addEventListener('click', (event) => {
-        const withinBoundaries = event.composedPath().includes(target)
-        const tologOut = document.getElementById('logOut__btn--container');
-        if (withinBoundaries) {
-            tologOut.classList.remove('d-none');
-        } else {
-            tologOut.classList.add('d-none');
-        }
-    });
-}
-
-
-/**
  * The funtion is adding the corresponding email and password of a "Guest User".
  */
 function logInUserGuest() {
@@ -126,30 +87,13 @@ function logInUserGuest() {
 
 
 /**
- * The funtion transform a copy of the email into variable "param".
- * 
- * @param {string} emailUser - Value coresponding to the email given by the user.
- * @returns URL params value.
- */
-async function getActiveUserURL(emailUser) {
-    let first = "email";
-    let second = `${emailUser}`;
-    let params = new URLSearchParams();
-    params.append("first", first);
-    params.append("second", JSON.stringify(second));
-    console.log(params)
-    return params;
-}
-
-
-/**
  * The function forwards to "Summary" page.
  * 
  * @param {boolean} acces - If acces is granted or not.
  * @param {*} emailUser - Value coresponding to the email given by the user.
  */
 async function goToSummary(acces, emailUser) {
-    if (acces == true) {
+    if (acces) {
         let params = await getActiveUserURL(emailUser)
         location.href = "./src/html/summary.html?" + params.toString();
     }
@@ -195,8 +139,7 @@ async function getUserInfo() {
  * @param {object} newUser - Object with data coresponding to the new user.
  */
 async function processNewUserInfo(newEmail, newUser) {
-    let z = checkIfAlreadyRegistered(newEmail);
-    if (z == undefined) {
+    if (!isAlreadyRegistered(newEmail)) {
         await addToDatabase(newUser);
         setTimeout(toLogInPage, 1250);
         setTimeout(resetConfirmation, 1250);
@@ -224,7 +167,7 @@ async function addToDatabase(newUser) {
  * @param {*} newEmail - Value coresponding to the email given by the new user.
  * @returns - "undefined" if nothing has been found or a string, if "newEmail" is already in database. 
  */
-function checkIfAlreadyRegistered(newEmail) {
+function isAlreadyRegistered(newEmail) {
     let emailArray = usersArray.map((email) => email.userEmail);
     let findEmail = emailArray.find((email) => email == newEmail);
     return findEmail;
@@ -242,24 +185,6 @@ function getColor() {
     let b = Math.floor(Math.random() * 256);
     let color = `rgb(${r}, ${g}, ${b})`;
     return color;
-}
-
-
-/**
- * The function is taking the first letter from each word and creates a new word. 
- * 
- * @param {string} newName - Value coresponding to the givin name from the new user.
- * @returns - A string made with the first letter of each word from "newName".
- */
-function getInitials(newName) {
-    let names = newName.split(" "),
-        initials = names[0].substring(0, 1).toUpperCase();
-    if (names.length > 1) {
-        initials += names[names.length - 1].substring(0, 1).toUpperCase();
-    } else if (names.length == 1) {
-        initials = newName.substring(0, 2).toUpperCase();
-    }
-    return initials;
 }
 
 
@@ -299,31 +224,16 @@ async function resetPasswordUser(indexReset) {
 }
 
 
-
-/**
- * The functions is checking if email does exist in database.
- * 
- * @param {string} emailUser - Email provided by the user.
- * @returns - An index coresponding to the location in the "userArry" where the email has been found, otherwise "undefined".
- */
-function checkIfEmailExists(emailUser) {
-    let emailArray = usersArray.map((email) => email.userEmail);
-    let findEmailIndex = emailArray.findIndex((email) => email == emailUser);
-    return findEmailIndex;
-}
-
-
 /**
  * The function is changing the icon of the password.
  */
 function checkPasswordImg() {
     setInterval(() => {
-        let a = 0;
         let input = document.getElementById('password');
         let img = document.getElementById('password__img');
-        if (input.value.length > a && passwordVisible) {
+        if (input.value.length > 0 && passwordVisible) {
             visiblePasswordImg(input, img);
-        } else if (input.value.length > a && !passwordVisible) {
+        } else if (input.value.length > 0 && !passwordVisible) {
             hiddenPasswordImg(input, img);
         } else {
             defaultPasswordImg(img);
@@ -373,9 +283,5 @@ function defaultPasswordImg(img) {
  * The function chnages the password from not readable to readable.
  */
 function changeViewPassword() {
-    if (passwordVisible === false) {
-        passwordVisible = true;
-    } else {
-        passwordVisible = false;
-    }
+    passwordVisible = !passwordVisible;
 }

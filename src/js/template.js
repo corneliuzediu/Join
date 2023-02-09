@@ -1,5 +1,5 @@
-function generateTodoHTML(task) { 
-  return `
+function generateTodoHTML(task) {
+    return `
       <div id="${task["id"]}" draggable="true" ondragstart="startDragging(${task["id"]}); rotateTask(); highlight()" onclick="openAddTaskDialog('task-overlay', 'task-modal', ${task["id"]})" class="board-task">
           <span class="department ${task["color"]}">${task["department"]}</span>
           <span class="task-headline">${task["headline"]}</span>
@@ -22,58 +22,58 @@ function generateTodoHTML(task) {
 }
 
 function generateAssignedContactsHTML(contact, color) {
-  return `
+    return `
           <div style="background-color:${color}" class="task-contacts">${contact}</div>
       `;
 }
 
 function generateTaskProcessStatus(taskID) {
-  let currentTaskStatus = tasks[taskID]["category"];
-  let content = document.getElementById("current-process-status");
-  return (content.innerHTML = `Process-Status:&nbsp;<b>${currentTaskStatus}</b>  
+    let currentTaskStatus = tasks[taskID]["category"];
+    let content = document.getElementById("current-process-status");
+    return (content.innerHTML = `Process-Status:&nbsp;<b>${currentTaskStatus}</b>  
         `);
 }
 
 function generateTaskProcessStatusforEditDialog(taskID) {
-  let currentTaskStatus = tasks[taskID]["category"];
-  let content = document.getElementById("tasks_moveTo");
-  if (currentTaskStatus === "to-do") {
-    return (content.innerHTML = `
+    let currentTaskStatus = tasks[taskID]["category"];
+    let content = document.getElementById("tasks_moveTo");
+    if (currentTaskStatus === "to-do") {
+        return (content.innerHTML = `
                               <option value="to-do" selected>To do</option>
                               <option value="in-progress">In progress</option>
                               <option value="await-feedback">Await feedback</option>
                               <option value="done">Done</option>
 
     `);
-  } else if (currentTaskStatus === "await-feedback") {
-    return (content.innerHTML = `
+    } else if (currentTaskStatus === "await-feedback") {
+        return (content.innerHTML = `
                               <option value="to-do">To do</option>
                               <option value="in-progress">In progress</option>
                               <option value="await-feedback" selected>Await feedback</option>
                               <option value="done">Done</option>
 
     `);
-  } else if (currentTaskStatus === "in-progress") {
-    return (content.innerHTML = `
+    } else if (currentTaskStatus === "in-progress") {
+        return (content.innerHTML = `
                               <option value="to-do">To do</option>
                               <option value="in-progress" selected>In progress</option>
                               <option value="await-feedback">Await feedback</option>
                               <option value="done">Done</option>
 
     `);
-  } else {
-    return (content.innerHTML = `
+    } else {
+        return (content.innerHTML = `
                                   <option value="to-do">To do</option>
                                   <option value="in-progress">In progress</option>
                                   <option value="await-feedback">Await feedback</option>
                                   <option value="done" selected>Done</option>
     
         `);
-  }
+    }
 }
 
 function generateTaskModalHTML(task) {
-  return `
+    return `
           <div class="task-modal-container">
                       <img class="close-icon-overlay" src="../img/add-task-close-icon.png"
                           onclick="closeAddTaskDialog('task-modal', 'task-overlay')">
@@ -113,7 +113,7 @@ function generateTaskModalHTML(task) {
 //   </form>
 
 function generateTaskModalContactsHTML(contactInitials, contact, color) {
-  return `
+    return `
           <div class="assigned-contact-row">
               <div style="background-color:${color}" class="task-contacts-overlay">${contactInitials}</div>
               <span>${contact}</span>
@@ -122,7 +122,7 @@ function generateTaskModalContactsHTML(contactInitials, contact, color) {
 }
 
 function generateTaskModalContactsInitialsHTML(contactInitials, contact, color) {
-  return `
+    return `
           <div class="assigned-contact-initials">
               <div style="background-color:${color}" class="task-contacts-overlay">${contactInitials}</div>
           </div>
@@ -130,9 +130,9 @@ function generateTaskModalContactsInitialsHTML(contactInitials, contact, color) 
 }
 
 function generateEditTaskHTML(task) {
-  return `
+    return `
       <div class="task-modal-container">
-                      <img class="close-icon-overlay" src="../img/add-task-close-icon.png"
+                         <img class="close-icon-overlay" src="../img/add-task-close-icon.png"
                           onclick="closeAddTaskDialog('task-modal', 'task-overlay')">
                           <form class="edit-task">
                           <div class="form-width input-title margin-btn-25">
@@ -221,17 +221,28 @@ function generateEditTaskHTML(task) {
                           </div>
                       </form>
                       <div class="button-edit-task-area-confirm">
-                      <button class="btn-add-task ok-btn" onclick="saveTasks(${task["id"]})">
-                          Ok
-                          <img src="../img/check-icon.png" alt="add-icon">
-                      </button>
-                      </div>
+                        <button class="btn-add-task ok-btn" onclick="saveTasks(${task["id"]})">
+                            Ok
+                            <img src="../img/check-icon.png" alt="add-icon">
+                        </button>
+                        <button class="delete-icon-overlay" onclick="showIfDeleteQuestion()">
+                            <img src="../img/trash-9-16.ico">
+                        </button>
+                        <div id="ifToBeDeleted__wrapper" class="ifToBeDeleted__wrapper d-none">
+                            <p> Are you sure you want to delete this task? </p>
+                            <div id="ifToBeDeleted__answear" class="ifToBeDeleted__answear">
+                            <button onclick="ifDeleteTask(true, ${task.id})">YES</button>
+                            <button onclick="showIfDeleteQuestion()">NO</button>
+                            </div>
+
+                        </div>
+                        </div>
                   </div>
       `;
 }
 
 function createSubtaskHTML(subtaskName) {
-  return `
+    return `
       <div class="subtask text-19pt">
           <input type="checkbox" name="subtask-checkbox">
           <label for="check" name="subtask-name" id="subtask-name">${subtaskName}</label>
@@ -240,25 +251,25 @@ function createSubtaskHTML(subtaskName) {
 }
 
 function createSubtaskEditHTML(subtaskName, checkBox) {
-  if (checkBox === true) {
-    return `
+    if (checkBox === true) {
+        return `
           <div class="subtask text-19pt">
               <input type="checkbox" checked="checked" name="subtask-checkbox">
               <label for="check" name="subtask-name" id="subtask-name">${subtaskName}</label>
           </div>
           `;
-  } else {
-    return `
+    } else {
+        return `
         <div class="subtask text-19pt">
             <input type="checkbox" name="subtask-checkbox">
             <label for="check" name="subtask-name" id="subtask-name">${subtaskName}</label>
         </div>
         `;
-  }
+    }
 }
 
 function createContactHTML() {
-  return `
+    return `
       <div class="task-contacts-overlay-container">
           <div class="task-contacts-overlay font-size21">SM</div>
           <div class="task-contacts-overlay font-size21">MV</div>
@@ -274,5 +285,5 @@ function createContactHTML() {
  * @returns HTML element
  */
 function templateTask(i) {
-  return `<div id="template${i}" class="template-task"><div>`;
+    return `<div id="template${i}" class="template-task"><div>`;
 }
