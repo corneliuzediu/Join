@@ -257,6 +257,11 @@ function generateContactDetail(index, name, initials, initialsColor, email, phon
 function renderContactsInDropDown() {
   content = document.getElementById("collapseContacts");
   content.innerHTML = " ";
+  content.innerHTML = ` <div class="dropdown-contact">
+  <label for="NewContactFromAddTask" style="display: flex;align-items: center;justify-content: space-between;width: 100% !important;">
+  <input type="email" id="NewContactFromAddTask" placeholder="Invite a new contact" name="assign-contacts" value="">
+  <button value="submit" type="submit" class="btn-add-task-invite">Invite</button></label>
+</div>`;
   for (let i = 0; i < activeUserContacts.length; i++) {
     let name = activeUserContacts[i]["name"];
     content.innerHTML += `
@@ -280,7 +285,9 @@ function renderContactsInEditDropDown(taskID) {
     content.innerHTML += `
         <div class="dropdown-contact">
         <label for="${name}">${name}</label>
-        <input type="checkbox" checked="${assignedToContactTrue(taskID, name) ? "checked" : ""}" id="${name}" name="assign-contacts" value="${name}">
+        <input type="checkbox" checked="${
+          assignedToContactTrue(taskID, name) ? "checked" : ""
+        }" id="${name}" name="assign-contacts" value="${name}">
     </div>`;
   }
 }
@@ -298,5 +305,5 @@ function assignedToContactTrue(taskID, name) {
       checkedNames.push(tasks[taskID]["assignedTo"][i]);
     }
   }
-  return (checkedNames.includes(name))
+  return checkedNames.includes(name);
 }
