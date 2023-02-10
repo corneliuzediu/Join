@@ -363,6 +363,7 @@ async function ifDeleteTask(answear, id) {
     closeAddTaskDialog('task-modal', 'task-overlay');
     await saveInBackendUserTasks();
     addToBoard();
+    ifQuestionVissible = false;
   };
 };
 
