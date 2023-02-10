@@ -260,7 +260,7 @@ function renderContactsInDropDown() {
   content.innerHTML = ` <div class="dropdown-contact">
   <label for="NewContactFromAddTask" style="display: flex;align-items: center;justify-content: space-between;width: 100% !important;">
   <input type="email" id="NewContactFromAddTask" placeholder="Invite a new contact" name="assign-contacts" value="">
-  <button value="submit" type="submit" class="btn-add-task-invite">Invite</button></label>
+  <input value="Invite" type="button" class="btn-add-task-invite"></label>
 </div>`;
   for (let i = 0; i < activeUserContacts.length; i++) {
     let name = activeUserContacts[i]["name"];
