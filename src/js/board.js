@@ -177,7 +177,13 @@ function allowDrop(ev) {
  * @param {string} category - The section where the task is meeing moved to.
  */
 async function moveTo(category) {
-  tasks[currentDraggedElement]["category"] = category; // z.b. Todo mit id 1: Das Feld 'category' ändert sich zu 'open' oder 'closed'
+  let indexTask;
+  tasks.forEach(taskBoard => {
+    if (currentDraggedElement == taskBoard.id) {
+      indexTask = tasks.indexOf(taskBoard);
+    };
+  })
+  tasks[indexTask]["category"] = category; // z.b. Todo mit id 1: Das Feld 'category' ändert sich zu 'open' oder 'closed'
   document.getElementById("search").value = "";
   await saveInBackendUserTasks();
   // updateHTML();
