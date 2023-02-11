@@ -189,13 +189,14 @@
     width: 90%;
     justify-content: space-between;
     gap: 12px;
-    /* height: 50vh; */
+    height: auto;
 }
 
 .board-tasks-container {
     display: flex;
     flex-direction: column;
     min-width: 250px;
+    height: 100%;
 }
 
 .board-task {
