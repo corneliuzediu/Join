@@ -2,6 +2,7 @@ let contact = [];
 let emails = [];
 let newmail;
 let newContact = {};
+let newContactInvite;
 let alphabetLetters = []; //takes all first letters of activeUserContacts in alphabetically order
 let priorLetter; //sets the last letter for the Alphabet Registery
 
@@ -80,9 +81,18 @@ async function updateUserContact(index) {
  * @returns new contact as object
  */
 function getContactInfo() {
-  let newName = document.getElementById("new-contact-name").value;
+  if (invi) {
+  
+}
+
   let newEmail = document.getElementById("new-contact-email").value;
-  let newPhone = document.getElementById("new-contact-phone").value;
+  
+  let newName = document.getElementById("new-contact-name");
+  newName == null ? newName = newEmail.split('@')[0]:newName = newName.value;
+  
+  let newPhone = document.getElementById("new-contact-phone");
+  newPhone == null ? newPhone = '' : newPhone = newPhone.value;
+  
   let initials = setContactInitials(newName);
   let initialsColor = setColorForInitial(initials);
 
@@ -93,8 +103,12 @@ function getContactInfo() {
     email: newEmail,
     phone: newPhone,
   };
-
   return newContact;
+}
+
+function inviteNewContactToTask() {
+  newContactInvite = document.getElementById("new-contact-email").value;
+  renderContactsInDropDown();
 }
 
 /**

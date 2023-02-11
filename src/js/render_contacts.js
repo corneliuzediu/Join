@@ -259,9 +259,18 @@ function renderContactsInDropDown() {
   content.innerHTML = " ";
   content.innerHTML = ` <div class="dropdown-contact">
   <label for="NewContactFromAddTask" style="display: flex;align-items: center;justify-content: space-between;width: 100% !important;">
-  <input type="email" id="NewContactFromAddTask" placeholder="Invite a new contact" name="assign-contacts" value="">
-  <input value="Invite" type="button" class="btn-add-task-invite"></label>
+  <input type="email" id="new-contact-email" placeholder="name@domain.com" name="assign-contacts" pattern="[a-zA-Z0-9.!#$%&'*+@[a-zA-Z0-9].[a-zA-Z0-9]"
+  title="Please enter a valid e-mail with name@name.domain" maxlength="80">
+  <input value="Invite" onclick="inviteNewContactToTask()" type="button" class="btn-add-task-invite"></label>
 </div>`;
+  if (newContactInvite !== undefined) {
+    content.innerHTML += `
+        <div class="dropdown-contact">
+        <label for="${newContactInvite}" style="display: flex;align-items: center;justify-content: space-between;width: 100% !important;">${newContactInvite}
+        <input type="checkbox" id="${newContactInvite}" name="assign-contacts" value="${newContactInvite}">
+        </label>
+    </div>`;
+  }
   for (let i = 0; i < activeUserContacts.length; i++) {
     let name = activeUserContacts[i]["name"];
     content.innerHTML += `
