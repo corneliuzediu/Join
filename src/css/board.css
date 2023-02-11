@@ -809,7 +809,7 @@ button:has(input[type="radio"]:checked):last-of-type {
     flex-direction: column;
     z-index: 10;
     background-color: white;
-    max-height: 120px;
+    max-height: 250px;
     overflow-y: scroll;
 }
 

@@ -38,12 +38,16 @@ async function addNewUserContact() {
   }
   activeUserContacts.push(newContact);
   await saveInBackendUserContacts();
-  await loadAllContacts(); // refreshing contacts in contacts.html
+
+if (document.URL.includes(contacts.html)) {
+    await loadAllContacts(); // refreshing contacts in contacts.html
   document.getElementById("delete-contact-button").classList.remove("d-none");
   let j = getIndexOfEmail(newmail);
   openContactDetail(j);
   clearContent();
   closeAddContactDialog();
+} else { return; }
+  
 }
 
 /**
@@ -81,14 +85,16 @@ async function updateUserContact(index) {
  * @returns new contact as object
  */
 function getContactInfo() {
-  if (invi) {
+  let newEmail;
+  let newName;
   
-}
-
-  let newEmail = document.getElementById("new-contact-email").value;
-  
-  let newName = document.getElementById("new-contact-name");
-  newName == null ? newName = newEmail.split('@')[0]:newName = newName.value;
+  if (newContactInvite) {
+    newEmail = newContactInvite;
+    newName = newEmail.split('@')[0];
+  } else {
+    newEmail = document.getElementById("new-contact-email").value;
+    newName = document.getElementById("new-contact-name");
+  }
   
   let newPhone = document.getElementById("new-contact-phone");
   newPhone == null ? newPhone = '' : newPhone = newPhone.value;
@@ -109,6 +115,8 @@ function getContactInfo() {
 function inviteNewContactToTask() {
   newContactInvite = document.getElementById("new-contact-email").value;
   renderContactsInDropDown();
+  addNewUserContact();
+  newContactInvite = '';
 }
 
 /**
