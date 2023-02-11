@@ -248,42 +248,55 @@ function clearAddTaskInputFields() {
 
 
 function updateProgressBars() {
-  for (let i = 0; i < tasks.length; i++) {
-    let attribute = document.querySelector(`.progress-bar${i}`);
-    if (tasks[i].subtasks != 0 && i != undefined && attribute != null) {
-      if (calculateSubtaskProgress(tasks[i].subtasks) == 0) {
-        attribute.style.width = 0 + "%";
-      } else if (calculateSubtaskProgress(tasks[i].subtasks) <= 0.2) {
-        attribute.style.width = 20 + "%";
-      } else if (calculateSubtaskProgress(tasks[i].subtasks) <= 0.4) {
-        attribute.style.width = 40 + "%";
-      } else if (calculateSubtaskProgress(tasks[i].subtasks) <= 0.6) {
-        attribute.style.width = 60 + "%";
-      } else if (calculateSubtaskProgress(tasks[i].subtasks) <= 0.8) {
-        attribute.style.width = 80 + "%";
-      } else {
-        attribute.style.width = 100 + "%";
+  tasks.forEach(task => {
+    let taskID = task.id
+    let attribute = document.querySelector(`.progress-bar${taskID}`);
+    if (task.subtasks != 0 && taskID != undefined && attribute != null) {
+      let checkedSubtaskCounter = calculateSubtaskProgress(task.subtasks);
+      if (checkedSubtaskCounter == 0) {
+        attribute.parentElement.classList.add('d-none');
+      } else if (checkedSubtaskCounter > 0) {
+        if (checkedSubtaskCounter <= 0.2) {
+          attribute.parentElement.classList.remove('d-none');
+          attribute.style.width = 20 + "%";
+        } else if (checkedSubtaskCounter <= 0.4) {
+          attribute.style.width = 40 + "%";
+        } else if (checkedSubtaskCounter <= 0.5) {
+          attribute.style.width = 50 + "%";
+        } else if (checkedSubtaskCounter <= 0.6) {
+          attribute.style.width = 60 + "%";
+        } else if (checkedSubtaskCounter <= 0.8) {
+          attribute.style.width = 80 + "%";
+        } else {
+          attribute.style.width = 100 + "%";
+        }
       }
+    } else {
+      attribute.parentElement.classList.add('d-none');
     }
-  }
+  })
 }
 
 /**
  * The function shows in HTML how many subtasks are checked.
  */
 function updateProgressReport() {
-  for (let i = 0; i < tasks.length; i++) {
-    let attribute = document.querySelector(`.progress-report${i}`);
+  tasks.forEach(task => {
+    let taskID = task.id
+    let attribute = document.querySelector(`.progress-report${taskID}`);
     if (attribute != null) {
-      if (!tasks[i].subtasks.length == 0 && i != undefined) {
+      if (!task.subtasks.length == 0 && taskID != undefined) {
         let isChecked, count;
-        [isChecked, count] = getSubtaskCheckboxesChecked(tasks[i].subtasks);
-        attribute.innerHTML = `${isChecked} / ${count} done`;
-      } else {
-        attribute.innerHTML = `no subtasks`;
+        attribute.parentElement.classList.remove('d-none');
+        [isChecked, count] = getSubtaskCheckboxesChecked(task.subtasks);
+        if (isChecked != 0) {
+          attribute.innerHTML = `${isChecked} / ${count} done`;
+        } else {
+          attribute.parentElement.classList.add('d-none');
+        };
       }
-    }
-  }
+    };
+  });
 }
 
 
