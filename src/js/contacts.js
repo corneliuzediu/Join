@@ -135,16 +135,18 @@ function getNewContactInfo() {
  */
 function sortActiveUserContacts() {
   activeUserContacts.sort((a, b) => {
-    const firstName = a.name.toUpperCase(); // ignore upper and lowercase
-    const secondName = b.name.toUpperCase(); // ignore upper and lowercase
-    if (firstName < secondName) {
-      return -1;
+    if (a.name != undefined && b.name != undefined) {
+      const firstName = a.name.toUpperCase(); // ignore upper and lowercase
+      const secondName = b.name.toUpperCase(); // ignore upper and lowercase
+      if (firstName < secondName) {
+        return -1;
+      }
+      if (firstName > secondName) {
+        return 1;
+      }
+      // names must be equal
+      return 0;
     }
-    if (firstName > secondName) {
-      return 1;
-    }
-    // names must be equal
-    return 0;
   });
 }
 /**

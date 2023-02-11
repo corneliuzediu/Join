@@ -41,7 +41,7 @@ function slideOut() {
  */
 function renderContactList() {
   sortActiveUserContacts();
-  let firstLetters = activeUserContacts.map((item) => item.initials[0]);
+  let firstLetters = activeUserContacts.map((item) => item.initials);
 
   let content = document.getElementById("contact-list");
   content.innerHTML = " ";
