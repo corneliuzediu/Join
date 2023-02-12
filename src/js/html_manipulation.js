@@ -384,3 +384,41 @@ function generateCategoryHTML(category, color) {
     </div>
     `;
 }
+
+
+
+/**
+ * The function does create the input fields of "Add task"
+ */
+function resetAddTaskForm() {
+  document.getElementById("title").value = "";
+  document.getElementById("date").value = "";
+  let prioInput = document.querySelector('input[name="prio"]:checked');
+  if (prioInput !== null) {
+    prioInput.checked = false;
+  }
+  document.getElementById("description-text").value = "";
+  document.querySelectorAll('input[name="assign-contacts"]:checked').forEach((checkbox) => {
+    checkbox.checked = false;
+  });
+  if (document.querySelector("input[type=radio][name=color]:checked") !== null) {
+    document.querySelector("input[type=radio][name=color]:checked").checked = false;
+  }
+  document.getElementById(
+    "category-dropdown"
+  ).innerHTML = `<span>Select task category</span><img src="../img/select-arrow.png" alt="">`;
+  document.getElementById("category-dropdown").classList.remove("dropdown-active");
+}
+
+
+/**
+ * function toggles visibility of the task delete confirmation dialog
+ */
+function showIfDeleteQuestion() {
+  ifQuestionVissible = !ifQuestionVissible;
+  if (ifQuestionVissible) {
+    document.getElementById('ifToBeDeleted__wrapper').classList.remove('d-none');
+  } else {
+    document.getElementById('ifToBeDeleted__wrapper').classList.add('d-none');
+  }
+}
