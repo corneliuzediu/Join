@@ -41,7 +41,7 @@ function slideOut() {
  */
 function renderContactList() {
   sortActiveUserContacts();
-  let firstLetters = activeUserContacts.map((item) => item.initials);
+  let firstLetters = activeUserContacts.map((item) => item.initials[0]);
 
   let content = document.getElementById("contact-list");
   content.innerHTML = " ";
@@ -251,18 +251,21 @@ function generateContactDetail(index, name, initials, initialsColor, email, phon
         `;
 }
 
+
 /**
  * function gets arry activeUserContacts and renders drop-down in Add-Task Dialog
  */
 function renderContactsInDropDown() {
   content = document.getElementById("collapseContacts");
   content.innerHTML = " ";
-  content.innerHTML = ` <div class="dropdown-contact">
-  <label for="NewContactFromAddTask" style="display: flex;align-items: center;justify-content: space-between;width: 100% !important;">
-  <input type="email" id="new-contact-email" placeholder="name@domain.com" name="assign-contacts" pattern="[a-zA-Z0-9.!#$%&'*+@[a-zA-Z0-9].[a-zA-Z0-9]"
-  title="Please enter a valid e-mail with name@name.domain" maxlength="80">
-  <input value="Invite" onclick="inviteNewContactToTask()" type="button" class="btn-add-task-invite"></label>
-</div>`;
+  content.innerHTML = `
+  <div class="dropdown-contact">
+    <input  type="email" id="new-contact-email" maxlength="200" required placeholder="name@email.domain" title="Please provide a valide email address" name="invite_contact"/>
+    <input value="Invite" onclick="inviteNewContactToTask()" type="button" class="btn-add-task-invite"></label>
+  </div>
+  <span id="errorfield"></span>
+  `;
+  
   if (newContactInvite !== undefined) {
     content.innerHTML += `
         <div class="dropdown-contact">

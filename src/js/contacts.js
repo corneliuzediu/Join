@@ -113,11 +113,38 @@ function getContactInfo() {
 }
 
 function inviteNewContactToTask() {
+  let emailError = document.getElementById('errorfield');
   newContactInvite = document.getElementById("new-contact-email").value;
-  renderContactsInDropDown();
+  if (validateEmail() == true) {
+    emailError.classList.remove = 'error active';
+    renderContactsInDropDown();
+  } else if (validateEmail() == false) {
+    newContactInvite = '';
+    showError();
+  }
   addNewUserContact();
-  newContactInvite = '';
 }
+
+function validateEmail() {
+  const regex =
+  /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
+  const email = document.getElementById("new-contact-email").value;
+  if (regex.test(email)) {
+    return true;
+  } else {
+    return false;
+  }
+  
+}
+
+function showError() {
+  let emailError = document.getElementById('errorfield');
+  emailError.innerHTML = 'Please enter a valid e-mail address';
+    console.log("email is NOT valid");
+    // Set the styling appropriately
+    emailError.className = 'error active';
+    } 
+
 
 /**
  * Function is called when adding a new contact and if submitted new contacts email already exists in contacts array
@@ -210,3 +237,4 @@ function setContactInitials(newName) {
   }
   return initials;
 }
+

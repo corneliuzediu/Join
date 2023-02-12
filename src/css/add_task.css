@@ -14,6 +14,47 @@ main {
     z-index: 10;
 }
 
+/*//////////// EMAIL VALIDATION ////////////// */
+/* input[type=email]{
+  -webkit-appearance: none;
+  appearance: none;
+
+  width: 100%;
+  border: 1px solid #333;
+  margin: 0;
+
+  font-family: inherit;
+  font-size: 90%;
+
+  box-sizing: border-box;
+} */
+
+/* This is our style for the invalid fields */
+/* .invite_new_contact:invalid{
+    border-color: #900;
+    background-color: #FDD;
+  }
+  
+  .invite_new_contact:focus:invalid {
+    outline: none;
+  } */
+  
+  /* This is the style of our error messages */
+  .error {
+    width  : 100%;
+    padding: 0;
+    font-size: 80%;
+    color: white;
+    background-color: rgb(240, 140, 140);
+    border-radius: 0 0 5px 5px;
+    box-sizing: border-box;
+  }
+  
+  .error.active {
+    padding: 0.2em;
+  }
+  /*//////////// EMAIL VALIDATION ////////////// */
+
 .add-task-left {
     display: flex;
     flex-direction: column;
