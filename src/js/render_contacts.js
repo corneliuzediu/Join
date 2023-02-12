@@ -258,30 +258,25 @@ function generateContactDetail(index, name, initials, initialsColor, email, phon
 function renderContactsInDropDown() {
   content = document.getElementById("collapseContacts");
   content.innerHTML = " ";
-  content.innerHTML = `
-  <div class="dropdown-contact">
-    <input  type="email" id="new-contact-email" maxlength="200" placeholder="name@email.domain" title="Please provide a valide email address" name="invite_contact"/>
-    <input value="Invite" onclick="inviteNewContactToTask()" type="button" class="btn-add-task-invite"></label>
-  </div>
-  <span id="errorfield"></span>
-  `;
-  
+  content.innerHTML = `<div class="dropdown-contact">
+                          <input  type="email" id="new-contact-email" maxlength="200" placeholder="name@email.domain" title="Please provide a valide email address" name="invite_contact"/>
+                          <input value="Invite" onclick="inviteNewContactToTask()" type="button" class="btn-add-task-invite"></label>
+                      </div>
+                      <span id="errorfield"></span>`;
   if (newContactInvite !== undefined) {
-    content.innerHTML += `
-        <div class="dropdown-contact">
-        <label for="${newContactInvite}" style="display: flex;align-items: center;justify-content: space-between;width: 100% !important;">${newContactInvite}
-        <input type="checkbox" id="${newContactInvite}" name="assign-contacts" value="${newContactInvite}">
-        </label>
-    </div>`;
+    content.innerHTML += `<div class="dropdown-contact">
+                            <label for="${newContactInvite}" style="display: flex;align-items: center;justify-content: space-between;width: 100% !important;">${newContactInvite}
+                              <input type="checkbox" id="${newContactInvite}" name="assign-contacts" value="${newContactInvite}">
+                            </label>
+                          </div>`;
   }
   for (let i = 0; i < activeUserContacts.length; i++) {
     let name = activeUserContacts[i]["name"];
-    content.innerHTML += `
-        <div class="dropdown-contact">
-        <label for="${name}" style="display: flex;align-items: center;justify-content: space-between;width: 100% !important;">${name}
-        <input type="checkbox" id="${name}" name="assign-contacts" value="${name}">
-        </label>
-    </div>`;
+    content.innerHTML += `<div class="dropdown-contact">
+                            <label for="${name}" style="display: flex;align-items: center;justify-content: space-between;width: 100% !important;">${name}
+                              <input type="checkbox" id="${name}" name="assign-contacts" value="${name}">
+                            </label>
+                          </div>`;
   }
 }
 
@@ -295,18 +290,19 @@ function renderContactsInEditDropDown(taskID) {
   for (let i = 0; i < activeUserContacts.length; i++) {
     let name = activeUserContacts[i]["name"];
     if (contactAlreadyAssigned(taskID, name)) {
-      content.innerHTML += `
-      <div class="dropdown-contact">
-        <label for="${name}">${name}
-          <input type="checkbox" id="${name}"  checked  name="assign-contacts" value="${name}">
-        </label>
-      </div>`;
+      content.innerHTML += `<div class="dropdown-contact">
+                              <label for="${name}-label" style="width: 100%; display: flex; justify-content: space-between; align-items: center;">
+                                ${name}
+                                <input type="checkbox" id="${name}-label"  checked  name="assign-contacts" value="${name}">
+                              </label>
+                            </div>`;
     } else {
-      content.innerHTML += `
-      <div class="dropdown-contact">
-      <label for="${name}">${name}
-      <input type="checkbox" id="${name}" name="assign-contacts" value="${name}"></label>
-      </div>`;
+      content.innerHTML += `<div class="dropdown-contact">
+                              <label for="${name}-label" style="width: 100%; display: flex; justify-content: space-between; align-items: center;">
+                                ${name}
+                                <input type="checkbox" id="${name}-label" name="assign-contacts" value="${name}">
+                              </label>
+                            </div>`;
     }
   }
 }

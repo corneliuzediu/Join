@@ -11,6 +11,7 @@ async function init_add_task() {
   getTodaysDate();
 }
 
+
 /**
  * function changes bg-color of urgency button
  */
@@ -54,12 +55,14 @@ function getMonthNr(date) {
   }
 }
 
+
 /**
  * function clears form
  */
 function clearForm() {
   document.getElementById("myForm").reset();
 }
+
 
 /**
  * Function generates HTML within Category input field after a new category was created or an existing one was selected
@@ -72,6 +75,7 @@ function selectCategory(category, color) {
   document.getElementById("category-dropdown").classList.add("dropdown-active");
   document.getElementById(color).checked = true;
 }
+
 
 /**
  *

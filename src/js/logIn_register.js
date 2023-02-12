@@ -107,6 +107,7 @@ async function addNewUser() {
     await getUserInfo();
 }
 
+
 /**
  * The function is creating an object with the informations of the new user.
  */
