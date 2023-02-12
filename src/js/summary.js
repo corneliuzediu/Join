@@ -14,6 +14,7 @@ const months = [
   "December",
 ];
 
+
 /**
  * function calls the init() and all functions to render the statistic values in the summary board
  */
@@ -25,6 +26,7 @@ async function initSummary() {
   renderBoardStatistics();
 }
 
+
 /**
  * function renders Active User Name and actual greeting according to the day time
  */
@@ -33,12 +35,14 @@ function renderGreeting() {
   renderDayGreeting();
 }
 
+
 /**
  * function renders username
  */
 function renderActiveUserName() {
   document.getElementById("active-user-name").innerHTML = activeUser.userName;
 }
+
 
 /**
  * function renders day greeting
@@ -48,6 +52,7 @@ function renderDayGreeting() {
   document.getElementById("day-time").innerHTML = greeting;
 }
 
+
 /**
  * function renders date of today
  */
@@ -55,6 +60,7 @@ function renderTodaysDate() {
   let { day, month, year } = createDate();
   document.getElementById("date-of-today").innerHTML = `${month} ${day},  ${year}`;
 }
+
 
 /**
  * function gets daily hour and
@@ -72,6 +78,7 @@ function getDayTime() {
   }
 }
 
+
 /**
  * function calls all functions to render BoardStatistics
  */
@@ -84,9 +91,11 @@ function renderBoardStatistics() {
   filterTasksToDo();
 }
 
+
 function renderTaskInBoard() {
   return (document.getElementById("task-in-board").innerHTML = `${tasks.length}`);
 }
+
 
 function filterProgress() {
   let filteredItems = tasks.filter((item) => {
@@ -95,12 +104,14 @@ function filterProgress() {
   return (document.getElementById("task-in-progress").innerHTML = `${filteredItems.length}`);
 }
 
+
 function filterAwaitingFeedback() {
   let filteredItems = tasks.filter((item) => {
     return item.category == "await-feedback";
   });
   return (document.getElementById("awaiting-feedback").innerHTML = `${filteredItems.length}`);
 }
+
 
 function filterTasksDone() {
   let filteredItems = tasks.filter((item) => {
@@ -109,12 +120,14 @@ function filterTasksDone() {
   return (document.getElementById("tasks-done").innerHTML = `${filteredItems.length}`);
 }
 
+
 function filterTasksToDo() {
   let filteredItems = tasks.filter((item) => {
     return item.category == "to-do";
   });
   return (document.getElementById("tasks-to-do").innerHTML = `${filteredItems.length}`);
 }
+
 
 function filterTasksUrgent() {
   let filteredItems = tasks.filter((item) => {
@@ -124,7 +137,6 @@ function filterTasksUrgent() {
 }
 
 
-//////////////// HELPER-FUNCTIONS ////////////////////
 function createDate() {
   let date = new Date();
   let fullDate = {

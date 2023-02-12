@@ -94,7 +94,7 @@ function addNewCategory() {
 
 
 /**
- * This triggers the task added message.
+ * triggers task-added message, when new task was added
  */
 function taskAddedAnimation() {
   document.getElementById("added-task-message").classList.add("task-added-animation");
@@ -105,7 +105,7 @@ function taskAddedAnimation() {
 
 
 /**
- * This removes the task added message.
+ * removes task added message again
  */
 function taskAddedRemoveMessage() {
   document.getElementById("added-task-message").classList.remove("task-added-animation");
@@ -115,7 +115,7 @@ function taskAddedRemoveMessage() {
 
 /**
  * The function is collecting the information from all the input fields situated in task editor.
- * @param {number} taskID -  Value coresponding to the task id.
+ * @param {number} taskID -  Value corresponding to the task id.
  */
 function getValueFromEditInputs(taskID) {
   let editHeadline = document.getElementById(`edit-headline${taskID}`).value;
@@ -388,19 +388,9 @@ async function createTask(path) {
  * @param {string} color - the task color.
  * @param {array} subtasks - the subtask array.
  */
-async function createNewTask(
-  taskID,
-  category,
-  title,
-  description,
-  contactsCheckedBoxes,
-  urgency,
-  date,
-  color,
-  subtasks
-) {
+async function createNewTask(taskID, category, title, description, contactsCheckedBoxes, urgency, date, color, subtasks) {
   new CreateTask(taskID, category, title, description, contactsCheckedBoxes, urgency, date, color, subtasks);
-  await saveInBackendUserTasks(tasks.length); // this saves all tasks in Backend0
+  await saveInBackendUserTasks(tasks.length); 
   addToBoard();
   taskAddedToBoard();
   setTimeout(() => {
@@ -409,6 +399,7 @@ async function createNewTask(
     resetAddTaskForm();
   }, 2000);
 }
+
 
 /**
  * The function does create and save a new "Task" from the Add-Task.html specifically. It triggers a different kind of animation, than the one used on board.html
@@ -421,62 +412,27 @@ async function createNewTask(
  * @param {string} date - The task due date.
  * @param {string} color - the task color.
  */
-async function addTaskCreateTask(
-  taskID,
-  category,
-  title,
-  description,
-  contactsCheckedBoxes,
-  urgency,
-  date,
-  color,
-  subtasks
-) {
+async function addTaskCreateTask(taskID, category, title, description, contactsCheckedBoxes, urgency, date, color, subtasks) {
   new CreateTask(taskID, category, title, description, contactsCheckedBoxes, urgency, date, color, subtasks);
-  await saveInBackendUserTasks(tasks.length); // this saves all tasks in Backend
+  await saveInBackendUserTasks(tasks.length);
   addToBoard();
   taskAddedAnimation();
 }
+
 
 /**
  * The function registers if a checkbox has been selected and provides the list of checked elements.
  * @param {string} chkboxName - Provides the name of the identifier.
  * @returns List of people assigned to the task.
  */
-// Pass the checkbox name to the function
 function getCheckedBoxes(chkboxName) {
   let checkboxes = document.getElementsByName(chkboxName);
   let checkboxesChecked = [];
-  // loop over them all
   for (let i = 0; i < checkboxes.length; i++) {
-    // And stick the checked ones onto an array...
     if (checkboxes[i].checked) {
       checkboxesChecked.push(checkboxes[i].value);
     }
   }
-  // Return the array if it is non-empty, or null
   return checkboxesChecked.length > 0 ? checkboxesChecked : null;
 }
 
-/**
- * The function does crear the input fields of "Add task"
- */
-function resetAddTaskForm() {
-  document.getElementById("title").value = "";
-  document.getElementById("date").value = "";
-  let prioInput = document.querySelector('input[name="prio"]:checked');
-  if (prioInput !== null) {
-    prioInput.checked = false;
-  }
-  document.getElementById("description-text").value = "";
-  document.querySelectorAll('input[name="assign-contacts"]:checked').forEach((checkbox) => {
-    checkbox.checked = false;
-  });
-  if (document.querySelector("input[type=radio][name=color]:checked") !== null) {
-    document.querySelector("input[type=radio][name=color]:checked").checked = false;
-  }
-  document.getElementById(
-    "category-dropdown"
-  ).innerHTML = `<span>Select task category</span><img src="../img/select-arrow.png" alt="">`;
-  document.getElementById("category-dropdown").classList.remove("dropdown-active");
-}

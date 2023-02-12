@@ -21,35 +21,34 @@ window.onload = async function () {
     downloadFromServer();
 }
 
+
 async function downloadFromServer() {
     let result = await loadJSONFromServer();
     jsonFromServer = JSON.parse(result);
     // console.log('Loaded', result);
 }
 
+
 function setURL(url) {
     BASE_SERVER_URL = url;
 }
+
 
 /**
  * Loads a JSON or JSON Array to the Server
  * payload {JSON | Array} - The payload you want to store
  */
-
 async function loadJSONFromServer() {
     let response = await fetch(BASE_SERVER_URL + '/nocors.php?json=database&noache=' + (new Date().getTime()));
     return await response.text();
-
 }
+
 
 function loadJSONFromServerOld() {
     return new Promise(function (resolve, reject) {
         let xhttp = new XMLHttpRequest();
         let proxy = determineProxySettings();
         let serverURL = proxy + BASE_SERVER_URL + '/nocors.php?json=database&noache=' + (new Date().getTime());
-
-
-
 
         xhttp.open('GET', serverURL);
 
@@ -62,15 +61,10 @@ function loadJSONFromServerOld() {
                 }
             }
         };
-
         xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
         xhttp.send();
-
     });
 }
-
-
-
 
 
 /**
@@ -92,17 +86,14 @@ function saveJSONToServer() {
                 }
             }
         };
-
         xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
         xhttp.send(JSON.stringify(jsonFromServer));
-
     });
 }
 
 
 function determineProxySettings() {
     return '';
-
     if (window.location.href.indexOf('.developerakademie.com') > -1) {
         return '';
     } else {

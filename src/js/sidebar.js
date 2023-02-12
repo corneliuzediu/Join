@@ -30,6 +30,7 @@ function toAddTask() {
     window.location.href = "../html/add_task.html?" + params.toString();
 }
 
+
 /**
  * The functions is providing the User Email to Contacts Page
  */

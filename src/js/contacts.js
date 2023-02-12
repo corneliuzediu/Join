@@ -6,6 +6,7 @@ let newContactInvite;
 let alphabetLetters = []; //takes all first letters of activeUserContacts in alphabetically order
 let priorLetter; //sets the last letter for the Alphabet Registery
 
+
 /**
  * -loads all contacts into contact-details and checks. If contacts do exist, a contact delete button will be displayed
  */
@@ -15,19 +16,21 @@ async function loadAllContacts() {
   showDeleteButton();
 }
 
+
 /**
- *
+ * function gets a specific contact object by id
  * @param {integer} index -the index of a specific contact
- * @returns {object array} -returns a sincle complete contact as object
+ * @returns {object array} -returns a single complete contact as object
  */
 function getContactDetails(index) {
   contact = activeUserContacts[index];
   return contact;
 }
 
+
 /**
- *
- * @returns pushes new user oject into activeUserContacts and saves it into the backend
+ * function pushes new user object into activeUserContacts and saves it into the backend
+ * @returns 
  */
 async function addNewUserContact() {
   let newContact = getContactInfo();
@@ -38,22 +41,21 @@ async function addNewUserContact() {
   }
   activeUserContacts.push(newContact);
   await saveInBackendUserContacts();
-
 if (document.URL.includes("contacts.html")) {
-    await loadAllContacts(); // refreshing contacts in contacts.html
+    await loadAllContacts();
   document.getElementById("delete-contact-button").classList.remove("d-none");
   let j = getIndexOfEmail(newmail);
   openContactDetail(j);
   clearContent();
   closeAddContactDialog();
 } else { return; }
-  
 }
 
+
 /**
- *
+ * function checks if a newmail already exists in the activeUserContacts array
  * @param {object} newmail
- * @returns true if the newmail already exists in the activeUserContacts array
+ * @returns true including the newmail if it already exists 
  */
 function checkIfNewContactEmailExists(newmail) {
   let mailarray = activeUserContacts.map((email) => email.email);
@@ -64,6 +66,7 @@ function checkIfNewContactEmailExists(newmail) {
     }
   }
 }
+
 
 /**
  * Editing of existing contact
@@ -79,6 +82,7 @@ async function updateUserContact(index) {
   clearEditContent();
   closeEditContactDialog();
 }
+
 
 /**
  * Function reads the newly submitted form fields when adding a new contact details in "New Contact Dialog"
@@ -112,6 +116,11 @@ function getContactInfo() {
   return newContact;
 }
 
+
+/**
+ * function is called within the AddTask when a new contact is being invited during this action
+ * @returns calls and error message, if email is not valid otherwise adds the invite to all contacts
+ */
 function inviteNewContactToTask() {
   let emailError = document.getElementById('errorfield');
   newContactInvite = document.getElementById("new-contact-email").value;
@@ -126,6 +135,11 @@ function inviteNewContactToTask() {
   addNewUserContact();
 }
 
+
+/**
+ * function checks validity of current input of invited email
+ * @returns boolean
+ */
 function validateEmail() {
   const regex =
   /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
@@ -135,14 +149,15 @@ function validateEmail() {
   } else {
     return false;
   }
-  
 }
 
+
+/**
+ * function displays the error message in a specific HTML element
+ */
 function showError() {
   let emailError = document.getElementById('errorfield');
   emailError.innerHTML = 'Please enter a valid e-mail address';
-    console.log("email is NOT valid");
-    // Set the styling appropriately
     emailError.className = 'error active';
     } 
 
@@ -157,6 +172,7 @@ function sorryEmailAlreadyExists(newmail) {
   document.getElementById("info-text").innerHTML = `Sorry, the e-mail ${newmail} already exists!`;
   document.getElementById("info-text").classList.add("info-text-alert");
 }
+
 
 /**
  * Function reads the form fields when altering/editing existing contact details in "Edit Contact Dialog"
@@ -178,10 +194,9 @@ function getNewContactInfo() {
   return newContact;
 }
 
-/*// HELPER FUNCTIONS ////////////////////////////////*/
 
 /**
- * sorts the contacts array in alphabetical order
+ * function sorts the contacts array in alphabetical order
  */
 function sortActiveUserContacts() {
   activeUserContacts.sort((a, b) => {
@@ -199,8 +214,9 @@ function sortActiveUserContacts() {
     }
   });
 }
+
+
 /**
- *
  * @returns array of emails that belong to the active user contacts
  */
 function getEmails() {
@@ -210,8 +226,9 @@ function getEmails() {
   return emails;
 }
 
+
 /**
- *
+ * function get the index of newmail
  * @param {string} newmail
  * @returns index of email of newly created contact
  */
@@ -223,8 +240,9 @@ function getIndexOfEmail(newmail) {
   return i;
 }
 
+
 /**
- *
+ *function creates the initials from first- and lastname
  * @param {string} newName
  * @returns Upper Case Initials of FirstName and LastName in array
  */

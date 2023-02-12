@@ -118,11 +118,13 @@ function generateTaskModalContactsHTML(contactInitials, contact, color) {
 }
 
 
+
 function generateTaskModalContactsInitialsHTML(contactInitials, contact, color) {
     return `<div class="assigned-contact-initials">
                 <div style="background-color:${color}" class="task-contacts-overlay">${contactInitials}</div>
             </div>`;
 }
+
 
 
 function generateEditTaskHTML(task) {
