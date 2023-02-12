@@ -31,6 +31,7 @@ function getContactDetails(index) {
  */
 async function addNewUserContact() {
   let newContact = getContactInfo();
+  debugger
   newmail = newContact["email"];
   if (checkIfNewContactEmailExists(newmail)) {
     sorryEmailAlreadyExists(newmail);
@@ -39,7 +40,7 @@ async function addNewUserContact() {
   activeUserContacts.push(newContact);
   await saveInBackendUserContacts();
 
-if (document.URL.includes(contacts.html)) {
+if (document.URL.includes("contacts.html")) {
     await loadAllContacts(); // refreshing contacts in contacts.html
   document.getElementById("delete-contact-button").classList.remove("d-none");
   let j = getIndexOfEmail(newmail);
@@ -93,7 +94,7 @@ function getContactInfo() {
     newName = newEmail.split('@')[0];
   } else {
     newEmail = document.getElementById("new-contact-email").value;
-    newName = document.getElementById("new-contact-name");
+    newName = document.getElementById("new-contact-name").value;
   }
   
   let newPhone = document.getElementById("new-contact-phone");
@@ -121,6 +122,7 @@ function inviteNewContactToTask() {
   } else if (validateEmail() == false) {
     newContactInvite = '';
     showError();
+    return;
   }
   addNewUserContact();
 }

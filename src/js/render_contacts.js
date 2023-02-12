@@ -260,7 +260,7 @@ function renderContactsInDropDown() {
   content.innerHTML = " ";
   content.innerHTML = `
   <div class="dropdown-contact">
-    <input  type="email" id="new-contact-email" maxlength="200" required placeholder="name@email.domain" title="Please provide a valide email address" name="invite_contact"/>
+    <input  type="email" id="new-contact-email" maxlength="200" placeholder="name@email.domain" title="Please provide a valide email address" name="invite_contact"/>
     <input value="Invite" onclick="inviteNewContactToTask()" type="button" class="btn-add-task-invite"></label>
   </div>
   <span id="errorfield"></span>
