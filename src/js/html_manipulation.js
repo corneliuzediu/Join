@@ -353,3 +353,34 @@ function toLogOut() {
     }
   });
 }
+
+
+/**
+ * Function generates HTML within Category input field after a new category was created or an existing one was selected
+ * @param {string} category
+ * @param {string} color
+ */
+function selectCategory(category, color) {
+  document.getElementById("category-dropdown").innerHTML = "";
+  document.getElementById("category-dropdown").innerHTML = `<div class="dropdown-category-select">${category}  <div class="category-color ${color}"></div></div><img src="../img/select-arrow.png" alt="">`;
+  document.getElementById("category-dropdown").classList.add("dropdown-active");
+  document.getElementById(color).checked = true;
+}
+
+
+/**
+ * function generates the elements in the category drop-down of the Add-Task Dialog
+ * @param {string} category
+ * @param {string} color
+ * @returns HTML code that renders content in drop-down menue of Add-Task
+ */
+function generateCategoryHTML(category, color) {
+  return `
+  <div onclick="selectCategory('${category}','${color}')" class="dropdown-category" id="" role="button" data-bs-toggle="collapse"
+  data-bs-target="#collapseCategory" aria-expanded="false" aria-controls="collapseCategory">
+  <label for="category-${category}">${category}</label>
+  <input type="radio" name="category" id="category-${category}" value="${category}">
+    <div class="category-color ${color}"></div>
+    </div>
+    `;
+}
