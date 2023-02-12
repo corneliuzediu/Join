@@ -104,13 +104,7 @@ function generateTaskModalHTML(task) {
       `;
 }
 
-//   <form action="">
-//       <label for="tasks">Move task to:</label>
-//       <select class="tasks_moveTo" id="tasks_moveTo" value="Move">
 
-//       </select>
-//       <input type="submit" value="Move">
-//   </form>
 
 function generateTaskModalContactsHTML(contactInitials, contact, color) {
     return `

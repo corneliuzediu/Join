@@ -292,7 +292,8 @@ function updateProgressReport() {
         if (isChecked != 0) {
           attribute.innerHTML = `${isChecked} / ${count} done`;
         } else {
-          attribute.parentElement.classList.add('d-none');
+          attribute.innerHTML = `0 / ${count} done`;
+          attribute.parentElement.parentElement.style.justifyContent = "flex-end";
         };
       }
     };

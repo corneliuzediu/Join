@@ -291,13 +291,20 @@ function renderContactsInEditDropDown(taskID) {
   content.innerHTML = " ";
   for (let i = 0; i < activeUserContacts.length; i++) {
     let name = activeUserContacts[i]["name"];
-    content.innerHTML += `
-        <div class="dropdown-contact">
-        <label for="${name}">${name}</label>
-        <input type="checkbox" checked="${
-          assignedToContactTrue(taskID, name) ? "checked" : ""
-        }" id="${name}" name="assign-contacts" value="${name}">
-    </div>`;
+    if (contactAlreadyAssigned(taskID, name)) {
+      content.innerHTML += `
+      <div class="dropdown-contact">
+        <label for="${name}">${name}
+          <input type="checkbox" id="${name}"  checked  name="assign-contacts" value="${name}">
+        </label>
+      </div>`;
+    } else {
+      content.innerHTML += `
+      <div class="dropdown-contact">
+      <label for="${name}">${name}
+      <input type="checkbox" id="${name}" name="assign-contacts" value="${name}"></label>
+      </div>`;
+    }
   }
 }
 
@@ -309,10 +316,19 @@ function renderContactsInEditDropDown(taskID) {
  */
 function assignedToContactTrue(taskID, name) {
   let checkedNames = [];
-  if (tasks[taskID]["assignedTo"] != null) {
+  if (tasks[taskID]["assignedTo"] != null && contactAlreadyAssigned(taskID, name)) {
     for (let i = 0; i < tasks[taskID]["assignedTo"].length; i++) {
       checkedNames.push(tasks[taskID]["assignedTo"][i]);
     }
   }
   return checkedNames.includes(name);
+}
+
+
+function contactAlreadyAssigned(taskID, name) {
+  let nameAllreadyAssigned = tasks[taskID]["assignedTo"].find(nameInArray => name == nameInArray)
+  if (nameAllreadyAssigned != undefined)
+    return true;
+  else
+    return false;
 }
