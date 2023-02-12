@@ -3,5 +3,4 @@ class CreateSubTask {
     this.subtaskName = subtaskName,
     this.checkBox = checkBox
     }
-
   }

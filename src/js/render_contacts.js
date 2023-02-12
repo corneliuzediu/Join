@@ -1,4 +1,3 @@
-/*// HTML RENDERING & ANIMATION ////////////////////////////////*/
 /**
  * function opens contact Detail Modal and calls the necessary functions to render details and HTML
  * @param {integer} index
@@ -18,6 +17,7 @@ function openContactDetail(index) {
   }, 200);
 }
 
+
 /**
  * function makes the div visible that includes the delete button
  */
@@ -29,6 +29,7 @@ function showDeleteButton() {
   }
 }
 
+
 /**
  * function adds style to initiate slide-in CSS animation
  */
@@ -36,16 +37,15 @@ function slideOut() {
   document.getElementById("contact-detail").classList.remove("slide-in");
 }
 
+
 /**
  * function calls helper functions to render all contacts in a list
  */
 function renderContactList() {
   sortActiveUserContacts();
   let firstLetters = activeUserContacts.map((item) => item.initials[0]);
-
   let content = document.getElementById("contact-list");
   content.innerHTML = " ";
-
   for (let i = 0; i < activeUserContacts.length; i++) {
     renderRegistery(i, firstLetters);
     content.innerHTML += `
@@ -61,8 +61,9 @@ function renderContactList() {
   }
 }
 
+
 /**
- *
+ * function renders the registery in the contact list
  * @param {integer} i
  * @param {string} firstLetters
  * @returns function renders initials
@@ -78,6 +79,7 @@ function renderRegistery(i, firstLetters) {
   }
 }
 
+
 /**
  * function opens AddContactDialog Modal
  */
@@ -88,6 +90,7 @@ function openAddContactDialog() {
     document.getElementById("add-contact-modal").classList.add("slide-in");
   }, 10);
 }
+
 
 /**
  * function closes prior opend dialog
@@ -100,6 +103,7 @@ function closeAddContactDialog() {
     document.getElementById("overlay").classList.add("d-none");
   }, 200);
 }
+
 
 /**
  * function clears form values and css classes
@@ -115,6 +119,7 @@ function clearContent() {
   document.getElementById("new-contact-email").style.color = "black";
 }
 
+
 /**
  * function clears form values and css classes
  */
@@ -123,6 +128,7 @@ function clearEditContent() {
   document.getElementById("edit-contact-email").value = "";
   document.getElementById("edit-contact-phone").value = "";
 }
+
 
 /**
  * function opens Edit Contact Dialog
@@ -142,6 +148,7 @@ function openEditContactDialog(index) {
   animateEditDialog();
 }
 
+
 /**
  * function runs animation
  */
@@ -150,6 +157,7 @@ function animateEditDialog() {
     document.getElementById("edit-contact-modal").classList.add("slide-in");
   }, 10);
 }
+
 
 /**
  * function closes Edit Contact Dialog
@@ -161,6 +169,7 @@ function closeEditContactDialog() {
     document.getElementById("overlay2").classList.add("d-none");
   }, 200);
 }
+
 
 /**
  * function renders the contact edit dialog modal
@@ -208,6 +217,7 @@ function generateContactEditDialog(index) {
                 </div>
                 `;
 }
+
 
 /**
  * function renders the contact details
@@ -285,6 +295,7 @@ function renderContactsInDropDown() {
   }
 }
 
+
 /**
  * function renders all active user contacs into Contacts Edit DropDown
  * @param {integer} taskID
@@ -310,6 +321,7 @@ function renderContactsInEditDropDown(taskID) {
     }
   }
 }
+
 
 /**
  * function searches task to derive contact names that are assign to task

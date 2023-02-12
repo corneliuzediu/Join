@@ -1,11 +1,10 @@
-/*** Log In / Sign in / Reset Password ***/
-// Function for the start animation
 /**
  * The function is changing the background color for the start animation
  */
 function changeBg() {
   document.getElementById("initial__file--wrapper").style.background = "white";
 }
+
 
 /**
  * The function does the logo transition from the center to top left;
@@ -17,6 +16,7 @@ function transitionLogo() {
   document.getElementById("logo__img").style.opacity = "0";
 }
 
+
 /**
  * The functions changes the display style for proper possition;
  */
@@ -25,7 +25,7 @@ function showCardAndHeader() {
   document.getElementById("to__sign-in--wrapper").style.display = "flex";
 }
 
-// Function for sing up.
+
 /**
  * The functions is showing if the new user was succesfully registered.
  */
@@ -35,6 +35,7 @@ function showConfirmation() {
   document.getElementById("signUp__id--response").style.transform = "translateY(-20vh)";
 }
 
+
 /**
  * The function is repositioning the confirmation field to the initial location.
  */
@@ -43,6 +44,7 @@ function resetConfirmation() {
   document.getElementById("signUp__id--response").classList.add("d-none");
   document.getElementById("signUp__id--response").style.transform = "translateY(0vh)";
 }
+
 
 /**
  * The function does clear the input fields is "Sign Up" section.
@@ -54,13 +56,16 @@ function cleanInput() {
   document.getElementById("signUp__validation").classList.add("d-none");
 }
 
+
+/**
+ * function shows, if a user is already registered
+ */
 function showUserAlreadyRegistered() {
   document.getElementById("signUp__validation").classList.remove("d-none");
   document.getElementById("signUp__validation").innerHTML = `Email already registered.`;
   document.getElementById("signUp__validation").parentElement.style.gap = "10px";
 }
 
-// Functions for reset password.
 
 /**
  * The function is showing the section where is password reset is available.
@@ -70,6 +75,7 @@ function changeDivReset() {
   document.getElementById("forgot__newPassword").classList.remove("d-none");
 }
 
+
 /**
  *  The functions clears the input fields for password reset.
  */
@@ -78,10 +84,10 @@ function clearInputNewPassword() {
   document.getElementById("user__newPassword-2").value = "";
 }
 
+
 /**
  * The function is showing the validation, if reset password can be done.
- *
- * @param {*} index
+ * @param {integer} index
  */
 function allowResetPassword(index) {
   if (index >= 0) {
@@ -92,6 +98,7 @@ function allowResetPassword(index) {
     document.getElementById("forgot__email--validation").classList.remove("d-none");
   }
 }
+
 
 /**
  * The function is showing the confirmation of "Reset email" has been sended.
@@ -113,6 +120,7 @@ function resetSendEmail() {
   document.getElementById("email__sent").style.transform = "translateX(-50%) translateY(0vh)";
 }
 
+
 /**
  * The function is animating the "Reset email" confirmation element.
  */
@@ -122,16 +130,17 @@ function animateSentEmail() {
   setTimeout(resetSendEmail, 1000);
 }
 
+
 /**
  * The function is showing the afirmation of succesfully reseted password.
  */
-
 function showNewPasswordConfirmed() {
   document.querySelector(".forgot__file--wrapper").classList.add("blur");
   document.querySelector(".response__forgot--container").classList.remove("d-none");
   document.getElementById("reset__confirmed").classList.remove("d-none");
   setTimeout(animatePasswordConfirmed, 1);
 }
+
 
 /**
  * The function is repositioning the confirmation of "Password reseted" to the initial location.
@@ -143,6 +152,7 @@ function resetPasswordConfirmed() {
   document.getElementById("reset__confirmed").style.transform = "translateX(-50%) translateY(0vh)";
 }
 
+
 /**
  * The function is animating the "Password reseted" element.
  */
@@ -152,10 +162,9 @@ function animatePasswordConfirmed() {
   setTimeout(resetPasswordConfirmed, 1000);
 }
 
-/***        Board       ***/
+
 /**
  * The function animates the "+" sign from each board section.
- *
  * @param {number} i - Number provided in HTML text.
  */
 function markAddIconAsActive(i) {
@@ -163,6 +172,7 @@ function markAddIconAsActive(i) {
   addIcon.style.backgroundImage = 'url("../img/plus-button-inactive.png")';
   addIcon.style.transition = "all 125ms ease-in-out";
 }
+
 
 /**
  * The function changes all the "+" sign to its initial form.
@@ -173,6 +183,7 @@ function resetAddIcon() {
     add.style.transition = "all 125ms ease-in-out";
   });
 }
+
 
 /**
  * The function changes the elements orientation to optimize responsive.
@@ -192,23 +203,23 @@ function changeResponsiveTemplates() {
   done.insertBefore(template3, done.children[0]);
 }
 
+
 /**
  * The function is optimiting for responsive.
- *
- * @param {string} id2 - Id of the Html element to be manipulated.
+ * @param {string} id - Id of the Html element to be manipulated.
  */
-function responsiveTaskModalAnimation(id2) {
+function responsiveTaskModalAnimation(id) {
   if (window.innerWidth > 768) {
-    document.getElementById(id2).classList.add("slide-in-bottom");
+    document.getElementById(id).classList.add("slide-in-bottom");
   } else {
-    document.getElementById(id2).classList.add("slide-in");
+    document.getElementById(id).classList.add("slide-in");
     document.getElementById("prio-overlay");
   }
 }
 
+
 /**
  * The function is optimiting for responsive.
- *
  * @param {string} id - Id of the Html element to be manipulated.
  * @param {string} id2 - Id of the Html element to be manipulated.
  */
@@ -227,6 +238,7 @@ function closeAddTaskDialog(id, id2) {
   }, 200);
 }
 
+
 function clearAddTaskInputFields() {
   document.getElementById("title").value = "";
   document.getElementById("date").value = "";
@@ -239,7 +251,6 @@ function clearAddTaskInputFields() {
   document.querySelectorAll('input[name="assign-contacts"]:checked').forEach((checkbox) => {
     checkbox.checked = false;
   });
-
   let prioInput = document.querySelector('input[name="prio"]:checked');
   if (prioInput !== null) {
     prioInput.checked = false;
@@ -277,6 +288,7 @@ function updateProgressBars() {
   })
 }
 
+
 /**
  * The function shows in HTML how many subtasks are checked.
  */
@@ -309,6 +321,7 @@ function taskAddedToBoard() {
   taskAdded.classList.add("slide-in-bottom");
 }
 
+
 /**
  * The function does remove the confirmation of the task being added.
  */
@@ -320,6 +333,7 @@ function closeTaskAddedToBoard() {
     resetTaskAddedToBoard();
   }, 200);
 }
+
 
 /**
  * The function reposition the confirmation, of the task being added, to the initial position.
@@ -384,7 +398,6 @@ function generateCategoryHTML(category, color) {
     </div>
     `;
 }
-
 
 
 /**

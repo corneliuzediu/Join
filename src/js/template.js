@@ -21,11 +21,13 @@ function generateTodoHTML(task) {
       `;
 }
 
+
 function generateAssignedContactsHTML(contact, color) {
     return `
           <div style="background-color:${color}" class="task-contacts">${contact}</div>
       `;
 }
+
 
 function generateTaskProcessStatus(taskID) {
     let currentTaskStatus = tasks[taskID]["category"];
@@ -33,6 +35,7 @@ function generateTaskProcessStatus(taskID) {
     return (content.innerHTML = `Process-Status:&nbsp;<b>${currentTaskStatus}</b>  
         `);
 }
+
 
 function generateTaskProcessStatusforEditDialog(taskID) {
     let currentTaskStatus = tasks[taskID]["category"];
@@ -72,6 +75,7 @@ function generateTaskProcessStatusforEditDialog(taskID) {
     }
 }
 
+
 function generateTaskModalHTML(task) {
     return `
           <div class="task-modal-container">
@@ -105,7 +109,6 @@ function generateTaskModalHTML(task) {
 }
 
 
-
 function generateTaskModalContactsHTML(contactInitials, contact, color) {
     return `
           <div class="assigned-contact-row">
@@ -115,6 +118,7 @@ function generateTaskModalContactsHTML(contactInitials, contact, color) {
       `;
 }
 
+
 function generateTaskModalContactsInitialsHTML(contactInitials, contact, color) {
     return `
           <div class="assigned-contact-initials">
@@ -122,6 +126,7 @@ function generateTaskModalContactsInitialsHTML(contactInitials, contact, color) 
           </div>
       `;
 }
+
 
 function generateEditTaskHTML(task) {
     return `
@@ -235,6 +240,7 @@ function generateEditTaskHTML(task) {
       `;
 }
 
+
 function createSubtaskHTML(subtaskName) {
     return `
       <div class="subtask text-19pt">
@@ -243,6 +249,7 @@ function createSubtaskHTML(subtaskName) {
       </div>
       `;
 }
+
 
 function createSubtaskEditHTML(subtaskName, checkBox) {
     if (checkBox === true) {
@@ -262,6 +269,7 @@ function createSubtaskEditHTML(subtaskName, checkBox) {
     }
 }
 
+
 function createContactHTML() {
     return `
       <div class="task-contacts-overlay-container">
@@ -271,6 +279,7 @@ function createContactHTML() {
       </div>
       `;
 }
+
 
 /**
  * The function contains the HTML template coresponding to the tasks shown on board.

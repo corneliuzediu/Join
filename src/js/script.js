@@ -1,14 +1,10 @@
-/***    Array       ***/
 let usersArray = [];      // Array that holds the user list from the backend;
 let activeUser = [];      // Array that holds the actiov user info;
 let activeUserContacts = [];  // Array that holds the contacts of the active user;
-// let taskArray = taskArray;
 
-/***    Functions   ***/
 
 /**
  * After openning the page, calls the functions that animate the logo;
- * 
  */
 async function logoAnimation() {
   transitionLogo();
@@ -53,7 +49,6 @@ async function includeHTML() {
 // Local Storage & Active user.
 /**
  * The functions does save the active user in local storage.
- * 
  * @param {object} activeUser - The object contains the informations of the active user.
  */
 async function saveLocalActiveUser(activeUser) {
@@ -64,7 +59,6 @@ async function saveLocalActiveUser(activeUser) {
 
 /**
  * The functions is deleting the active user in local storage.
- * 
  * @param {array} activeUser - The object contains the informations of the active user.
  */
 async function deleteLocalActiveUser(activeUser) {
@@ -92,7 +86,6 @@ async function getActiveUser() {
 
 /**
  * The functions is collecting the active user email from the UR.
- * 
  * @returns - the email of the active user.
  */
 function collectActiveUserFromURL() {
@@ -105,7 +98,6 @@ function collectActiveUserFromURL() {
 
 /**
  * The functions provides the info if the user is allowed to be saved in local storage
- * 
  * @returns - "True" or "False".
  */
 async function checkIfQuickAcces() {
@@ -114,7 +106,6 @@ async function checkIfQuickAcces() {
 }
 
 
-//////////////// Backend functions /////////////
 /**
  * The function is provideing the users data from the server.
  */
@@ -141,6 +132,7 @@ async function saveInBackendUserContacts() {
   await backend.setItem(`${activeUserEmail}`, JSON.stringify(activeUserContacts));
 }
 
+
 /**
  * function loads all spedific contacts of active user from Backend
  */
@@ -150,6 +142,7 @@ async function loadUserContactsFromBackend() {
   activeUserContacts = JSON.parse(backend.getItem(`${activeUserEmail}`)) || [];
 }
 
+
 /**
  * function displays red alert button before final deletion of all active user contacts in Backend 
  */
@@ -158,6 +151,7 @@ function deleteUserContacts() {
   document.getElementById("delete-contact-button-alert").classList.remove("d-none");
 }
 
+
 /**
  * function aborts deletion
  */
@@ -165,6 +159,7 @@ function abortDeleteContacts() {
   document.getElementById("delete-contact-button").classList.remove("d-none");
   document.getElementById("delete-contact-button-alert").classList.add("d-none");
 }
+
 
 /**
  * function deletes all specific active user contacts in Backend, which are save under this key 'activeUserEmail'
@@ -179,7 +174,6 @@ async function executeDeleteContacts() {
 }
 
 
-//// BACKEND Tasks
 /**
  * function saves all tasks of active user in Backend under this key 'activeUserEmail_task'
  */
@@ -192,17 +186,12 @@ async function saveInBackendUserTasks() {
  * function loads all active user tasks from Backend
  */
 async function loadUserTasksFromBackend() {
-
-
-
-  /************       ****************** */
   await downloadFromServer();
   // activeUserTasks = `${activeUser["userEmail"]}_task`;
   tasks = JSON.parse(backend.getItem('taskArray')) || [];
 }
 
 
-/***    Log In  &  Log Out  ***/
 /**
  * The function does the procceses for the "Log In". 
  */
@@ -250,7 +239,6 @@ async function logOut() {
 
 /**
  * The funtion transform a copy of the email into variable "param".
- * 
  * @param {string} emailUser - Value coresponding to the email given by the user.
  * @returns URL params value.
  */
@@ -267,7 +255,6 @@ async function getActiveUserURL(emailUser) {
 
 /**
  * The function selects the user from the user database and is giving the value to activeUser;
- * 
  * @param {string} userEmail - The value coresponds to the email provided by the user.
  */
 async function setActiveUser(userEmail) {
@@ -281,7 +268,6 @@ async function setActiveUser(userEmail) {
 
 /**
  * The funtion is checking if the user decided to be saved local.
- * 
  * @param {string} emailUser - Value coresponding to the email given by the user.
  */
 async function checkIfRmemberMe(emailUser) {
@@ -298,7 +284,6 @@ async function checkIfRmemberMe(emailUser) {
 
 /**
  * The functions is checking if email does exist in database.
- * 
  * @param {string} emailUser - Email provided by the user.
  * @returns - An index coresponding to the location in the "userArry" where the email has been found, otherwise "undefined".
  */
@@ -311,7 +296,6 @@ function checkIfEmailExists(emailUser) {
 
 /**
  * The function is taking the first letter from each word and creates a new word. 
- * 
  * @param {string} newName - Value coresponding to the givin name from the new user.
  * @returns - A string made with the first letter of each word from "newName".
  */
@@ -328,7 +312,6 @@ function getInitials(newName) {
 
 
 /**
- *
  * @param {string} initials
  * @returns a string that represents one of 5 possible rgb colors
  */
