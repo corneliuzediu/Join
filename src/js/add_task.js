@@ -450,7 +450,6 @@ async function addTaskCreateTask(
  */
 // Pass the checkbox name to the function
 function getCheckedBoxes(chkboxName) {
-  debugger;
   let checkboxes = document.getElementsByName(chkboxName);
   let checkboxesChecked = [];
   // loop over them all

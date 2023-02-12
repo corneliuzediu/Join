@@ -31,7 +31,6 @@ function getContactDetails(index) {
  */
 async function addNewUserContact() {
   let newContact = getContactInfo();
-  debugger
   newmail = newContact["email"];
   if (checkIfNewContactEmailExists(newmail)) {
     sorryEmailAlreadyExists(newmail);
