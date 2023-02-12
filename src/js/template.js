@@ -1,24 +1,21 @@
 function generateTodoHTML(task) {
-    return `
-      <div id="${task["id"]}" draggable="true" ondragstart="startDragging(${task["id"]}); rotateTask(); highlight()" onclick="openAddTaskDialog('task-overlay', 'task-modal', ${task["id"]})" class="board-task">
-          <span class="department ${task["color"]}">${task["department"]}</span>
-          <span class="task-headline">${task["headline"]}</span>
-          <span class="task-description">${task["description"]}</span>
-          <div class="progress-container">
-              <div class="progress" style="height: 8px;">
-                  <div class="progress-bar progress-bar${task["id"]}" role="progressbar" aria-label="Basic example" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-              <span><span class="progress-report${task["id"]}"></span></span>
-          </div>
-          <div class="contact-and-urgency">
-              <div class="task-contacts-container" id="task-contacts-container${task["id"]}">
-              </div>
-              <div class="task-urgency">
-                  <img src="../img/priority-${task["priority"]}-icon.png" alt="urgency">
-              </div>
-          </div>
-      </div>
-      `;
+    return `<div id="${task["id"]}" draggable="true" ondragstart="startDragging(${task["id"]}); rotateTask(); highlight()" onclick="openAddTaskDialog('task-overlay', 'task-modal', ${task["id"]})" class="board-task">
+                <span class="department ${task["color"]}">${task["department"]}</span>
+                <span class="task-headline">${task["headline"]}</span>
+                <span class="task-description">${task["description"]}</span>
+                <div class="progress-container">
+                    <div class="progress" style="height: 8px;">
+                        <div class="progress-bar progress-bar${task["id"]}" role="progressbar" aria-label="Basic example" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <span><span class="progress-report${task["id"]}"></span></span>
+                </div>
+                <div class="contact-and-urgency">
+                    <div class="task-contacts-container" id="task-contacts-container${task["id"]}"></div>
+                    <div class="task-urgency">
+                        <img src="../img/priority-${task["priority"]}-icon.png" alt="urgency">
+                    </div>
+                </div>
+            </div>`;
 };
 
 
