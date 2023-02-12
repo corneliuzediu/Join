@@ -309,12 +309,12 @@
     z-index: 5;
     left: 0;
     right: 0;
-    bottom: 0;
     top: 0;
+    bottom: 0;
     display: flex;
-    /* flex-direction: column; */
     justify-content: center;
-    align-items: center;
+    /* align-items: center; */
+    overflow-y: scroll;
     transition: all 250ms ease-in-out;
 }
 
@@ -356,6 +356,7 @@
     width: 623px;
     border-radius: 30px;
     padding: 50px;
+    margin: auto;
     transform: translateY(950px);
     transition: all 225ms ease-in-out;
 }
