@@ -413,7 +413,7 @@ async function createNewTask(
     closeAddTaskDialog("add-task-modal", "add-task-overlay");
     closeTaskAddedToBoard();
     resetAddTaskForm();
-  }, 1000);
+  }, 2000);
 }
 
 /**

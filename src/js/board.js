@@ -347,8 +347,8 @@ function updateUrgencyBtns(taskID) {
  */
 async function saveTasks(taskID) {
   getValueFromEditInputs(taskID);
-  closeAddTaskDialog("task-modal", "task-overlay");
   await saveInBackendUserTasks();
+  closeAddTaskDialog("task-modal", "task-overlay");
   addToBoard();
 }
 
