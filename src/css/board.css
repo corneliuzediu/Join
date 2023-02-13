@@ -1888,7 +1888,6 @@ input[type="checkbox"]:checked {
 
 
     .button-area {
-        gap: unset;
         justify-content: space-between;
         width: unset;
     }
