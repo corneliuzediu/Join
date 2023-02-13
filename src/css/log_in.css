@@ -291,7 +291,6 @@ a {
 
 
 /* General Media Log In */
-
 /* Width base Media*/
 @Media(max-width:768px) {
     .logIn__frame {
@@ -363,6 +362,7 @@ a {
         font-size: 0.8rem !important;
     }
 }
+
 
 /* Height base Media*/
 @Media(max-height: 992px) {
