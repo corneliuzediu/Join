@@ -29,7 +29,6 @@ async function initBoard() {
  */
 function addToBoard() {
   if (taskAddedAtAddTaskHTML == false) {
-    // console.time("Board Loading Time");
     filterAllTasks();
     generateTemplate();
     updateProgressBars();
@@ -39,7 +38,7 @@ function addToBoard() {
 
 
 /**
- * The function filters the task and generate the task on board ;
+ * The function filters the tasks per category and calls a function to render the task on board ;
  *
  * @param {array} array - The array contain all tasks;
  * @param {string} id - The id corresponds to the intendend section of the "Board"
@@ -47,6 +46,16 @@ function addToBoard() {
 function filterTasks(array, id) {
   let filter = array.filter((t) => t["category"] == id);
   document.getElementById(id).innerHTML = "";
+  renderTasks(filter, id);
+}
+
+
+/**
+ * function renders each task in its category and checks, which contact is assigned to taks
+ * @param {string} filter 
+ * @param {integer} id 
+ */
+function renderTasks(filter, id) {
   for (let i = 0; i < filter.length; i++) {
     const task = filter[i];
     document.getElementById(id).innerHTML += generateTodoHTML(task);
@@ -139,10 +148,7 @@ function filterSearchedTasks(array, id, search) {
       (t["category"] == id && t["headline"].toLowerCase().match(search)) ||
       (t["category"] == id && t["description"].toLowerCase().match(search))
   );
-  for (let i = 0; i < filter.length; i++) {
-    const element = filter[i];
-    document.getElementById(id).innerHTML += generateTodoHTML(element);
-  }
+  renderTasks(filter, id);
 }
 
 

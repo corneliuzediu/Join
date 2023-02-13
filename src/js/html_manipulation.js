@@ -282,8 +282,8 @@ function updateProgressBars() {
           attribute.style.width = 100 + "%";
         }
       }
-    } else {
-      attribute.parentElement.classList.add('d-none');
+    } else if (attribute !== null) {
+        attribute.parentElement.classList.add('d-none');
     }
   })
 }
