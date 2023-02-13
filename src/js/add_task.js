@@ -346,6 +346,7 @@ function readSubtasks() {
  * @returns a function call and clears all input fields
  */
 async function createTask(path) {
+  document.getElementById('task-added').classList.remove('d-none')
   let title = document.getElementById("title").value;
   let taskID = new Date().getTime();
   let contactsCheckedBoxes = getCheckedBoxes("assign-contacts");
