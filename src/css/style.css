@@ -4,13 +4,16 @@ body {
   scroll-behavior: smooth;
 }
 
+
 * {
   box-sizing: border-box;
 }
 
+
 * {
   font-family: "Open Sans", sans-serif;
 }
+
 
 h1 {
   font-style: normal;
@@ -19,13 +22,16 @@ h1 {
   font-size: 64px;
 }
 
+
 .d-none {
   display: none;
 }
 
+
 .d-none-not-important {
   display: none;
 }
+
 
 h2 {
   font-style: normal;
@@ -34,12 +40,13 @@ h2 {
   margin-right: 15px;
 }
 
+
 .gap-summary {
   gap: 35px !important;
 }
 
-/* HEADER */
 
+/* HEADER */
 header {
   position: fixed;
   width: 100%;
@@ -58,19 +65,23 @@ header {
   color: white;
 }
 
+
 .header-content {
   text-align: center;
 }
 
+
 .header-right-content img {
   cursor: pointer;
 }
+
 
 .join-logo img {
   height: 58px;
   object-fit: cover;
   cursor: pointer;
 }
+
 
 .header-right-content {
   display: flex;
@@ -79,15 +90,18 @@ header {
   width: 350px;
 }
 
+
 .help-icon {
   width: 31px;
   height: 31px;
 }
 
+
 .acc-icon {
   width: 49px;
   height: 49px;
 }
+
 
 .box {
   background-color: lightblue;
@@ -96,13 +110,14 @@ header {
   font-size: 1rem;
 }
 
+
 .container-fluid {
   padding: 0px !important;
   height: 100vh !important;
 }
 
-/* SIDEBAR */
 
+/* SIDEBAR */
 .sidebar {
   position: fixed;
   left: 0;
@@ -121,28 +136,34 @@ header {
   padding: 66px 20px;
 }
 
+
 .sidebar a {
   border: 1px solid hsl(218, 25%, 100%);
   background-color: unset;
 }
+
 
 .sidebar a:hover {
   border: 1px solid #42526e;
   box-shadow: -2px 0px 6px 0px rgb(0, 0, 0, 0.2);
 }
 
+
 .sidebar a:visited {
   color: #42526e;
 }
+
 
 .sidebar__highlight {
   background-color: #D2E3FF !important;
 }
 
+
 .legal__highlight {
   background-color: #005dff !important;
   color: white !important;
 }
+
 
 .menu {
   display: flex;
@@ -150,6 +171,7 @@ header {
   justify-content: center;
   gap: 15px;
 }
+
 
 .menu-btns {
   display: flex;
@@ -162,6 +184,7 @@ header {
   color: #42526e;
 }
 
+
 .menu-btns img {
   height: 22px;
 }
@@ -173,7 +196,6 @@ header {
 
 
 /* MAIN ///////////////////////////////////////////// */
-
 .main {
   display: flex;
   flex-direction: column;
@@ -185,38 +207,43 @@ header {
   width: calc(100% - 232px);
 }
 
+
 .logIn__wrapper--holder {
   min-height: inherit;
   width: inherit;
 }
 
+
 .font-medium {
   font-weight: 700;
   font-size: 33px;
-  /* line-height: 120%; */
 }
+
 
 .font-light {
   padding-top: 10px;
   font-weight: 400;
   font-size: 18px;
-  /* line-height: 120%; */
 }
+
 
 .copy-white {
   color: #ffffff;
   text-align: center;
 }
 
+
 .copy-black {
   color: #000000;
   text-align: center;
 }
 
+
 .copy-blue {
   color: #4589ff;
   text-align: center;
 }
+
 
 .top-box {
   display: flex;
@@ -227,10 +254,12 @@ header {
   white-space: break-spaces;
 }
 
+
 .bottom-box {
   display: flex;
   text-align: center;
 }
+
 
 .summary-container {
   display: flex;
@@ -238,19 +267,21 @@ header {
   justify-content: center;
 }
 
+
 .top-summary-container {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
+
 .vertical-line {
   display: flex;
   width: 3px;
   height: 70%;
   background-color: #ffffff;
-  /* transition: all 225ms ease-in-out; */
 }
+
 
 .greeting {
   display: flex;
@@ -258,6 +289,7 @@ header {
   align-items: center;
   flex-direction: row;
 }
+
 
 .alert-card {
   display: flex;
@@ -275,12 +307,14 @@ header {
   font-size: 48px;
 }
 
+
 .alert-card img {
   border: white solid 2px;
   border-radius: 100%;
   width: 76px;
   height: 76px;
 }
+
 
 .alert-card:hover {
   background-color: #ffffff;
@@ -290,6 +324,7 @@ header {
   transition: all 225ms ease-in-out;
 }
 
+
 .alert-card:hover .copy-white,
 .alert-card:hover .font-medium,
 .alert-card:hover .font-light {
@@ -297,9 +332,11 @@ header {
   transition: all 225ms ease-in-out;
 }
 
+
 .alert-card:hover .vertical-line {
   background-color: #4589ff;
 }
+
 
 .alert-card-paleblue {
   display: flex;
@@ -315,12 +352,14 @@ header {
   font-size: 48px;
 }
 
+
 .alert-card-paleblue img {
   border: white solid 2px;
   border-radius: 100%;
   width: 76px;
   height: 76px;
 }
+
 
 .alert-card-paleblue:hover {
   background-color: #4589ff !important;
@@ -330,11 +369,13 @@ header {
   transition: all 225ms ease-in-out;
 }
 
+
 .alert-card-paleblue:hover .copy-black,
 .alert-card-paleblue:hover .font-light {
   color: #ffffff;
   transition: all 225ms ease-in-out;
 }
+
 
 .to-do-card {
   display: flex;
@@ -350,6 +391,7 @@ header {
   cursor: pointer;
 }
 
+
 .to-do-card:hover {
   background-color: #4589ff !important;
   border-top-left-radius: 0;
@@ -358,11 +400,13 @@ header {
   transition: all 225ms ease-in-out;
 }
 
+
 .to-do-card:hover .copy-black,
 .to-do-card:hover .font-light {
   color: #ffffff;
   transition: all 225ms ease-in-out;
 }
+
 
 .to-do-card img {
   border: white solid 2px;

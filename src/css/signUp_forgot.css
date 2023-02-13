@@ -194,6 +194,7 @@ form img {
 
     .signUp__title {
         font-size: 2rem;
+        padding-inline: 10px;
     }
 }
 
