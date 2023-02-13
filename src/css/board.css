@@ -1970,6 +1970,11 @@ input[type="checkbox"]:checked {
     .button-area {
         height: 43px !important;
     }
+
+
+    .delete-icon-overlay{
+        right: -200%;
+    }
 }
 
 
@@ -2003,6 +2008,11 @@ input[type="checkbox"]:checked {
     .date-area,
     .tasks_moveTo {
         width: 360px !important;
+    }
+
+
+    .delete-icon-overlay{
+        right: -150%;
     }
 
 
@@ -2136,6 +2146,11 @@ input[type="checkbox"]:checked {
 
     .btn-create-task-resp {
         right: 10px;
+    }
+
+
+    .delete-icon-overlay{
+        right: -100%;
     }
 }
 
