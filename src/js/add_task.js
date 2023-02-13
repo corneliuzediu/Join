@@ -390,7 +390,7 @@ async function createTask(path) {
  */
 async function createNewTask(taskID, category, title, description, contactsCheckedBoxes, urgency, date, color, subtasks) {
   new CreateTask(taskID, category, title, description, contactsCheckedBoxes, urgency, date, color, subtasks);
-  await saveInBackendUserTasks(tasks.length); 
+  await saveInBackendUserTasks(tasks.length);
   addToBoard();
   taskAddedToBoard();
   setTimeout(() => {
@@ -433,6 +433,6 @@ function getCheckedBoxes(chkboxName) {
       checkboxesChecked.push(checkboxes[i].value);
     }
   }
-  return checkboxesChecked.length > 0 ? checkboxesChecked : null;
-}
+  return checkboxesChecked;
+};
 
