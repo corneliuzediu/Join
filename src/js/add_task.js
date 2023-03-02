@@ -100,7 +100,7 @@ function taskAddedAnimation() {
   document.getElementById("added-task-message").classList.add("task-added-animation");
   setTimeout(() => {
     taskAddedRemoveMessage();
-  }, 2000);
+  }, 1000);
 }
 
 
@@ -397,7 +397,7 @@ async function createNewTask(taskID, category, title, description, contactsCheck
     closeAddTaskDialog("add-task-modal", "add-task-overlay");
     closeTaskAddedToBoard();
     resetAddTaskForm();
-  }, 2000);
+  }, 1000);
 }
 
 

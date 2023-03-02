@@ -261,7 +261,7 @@ async function setActiveUser(userEmail) {
   let index = checkIfEmailExists(userEmail)
   indexActiveUser = index;
   activeUser = usersArray[indexActiveUser];
-  if (localStorage.getItem("activeUser") !== null)
+  if (localStorage.getItem("activeUser") !== null & activeUser)
     activeUser.quickAcces = true;
 }
 
@@ -273,7 +273,9 @@ async function setActiveUser(userEmail) {
 async function checkIfRmemberMe(emailUser) {
   if (callCheckBox()) {
     await setActiveUser(emailUser);
-    activeUser.quickAcces = true;
+    if (activeUser) {
+      activeUser.quickAcces = true;
+    }
     await saveLocalActiveUser(activeUser)
   } else {
     activeUser.quickAcces = false;
