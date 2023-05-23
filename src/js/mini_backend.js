@@ -1,5 +1,5 @@
 let jsonFromServer = {};
-let BASE_SERVER_URL = 'https://corneliu-zediu.developerakademie.net/Join-%20CZ/smallest_backend_ever';
+let BASE_SERVER_URL = 'https://corneliu-zediu.developerakademie.net/Join/smallest_backend_ever';
 
 const backend = {
     setItem: function (key, item) {
@@ -25,7 +25,6 @@ window.onload = async function () {
 async function downloadFromServer() {
     let result = await loadJSONFromServer();
     jsonFromServer = JSON.parse(result);
-    // console.log('Loaded', result);
 }
 
 

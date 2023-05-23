@@ -35,7 +35,6 @@ function getTodaysDate() {
   let month = getMonthNr(date);
   let year = date.getFullYear();
   let today = year + "-" + month + "-" + day;
-  console.log(typeof today);
   document.getElementById("date").setAttribute("min", today);
 }
 
